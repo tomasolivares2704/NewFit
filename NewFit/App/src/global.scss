@@ -1,0 +1,125 @@
+/*
+ * App Global CSS
+ * ----------------------------------------------------------------------------
+ * Put style rules here that you want to apply globally. These styles are for
+ * the entire app and not just one component. Additionally, this file can be
+ * used as an entry point to import other CSS/Sass files to be included in the
+ * output CSS.
+ * For more information on global stylesheets, visit the documentation:
+ * https://ionicframework.com/docs/layout/global-stylesheets
+ */
+
+/* Core CSS required for Ionic components to work properly */
+@import "@ionic/angular/css/core.css";
+
+/* Basic CSS for apps built with Ionic */
+@import "@ionic/angular/css/normalize.css";
+@import "@ionic/angular/css/structure.css";
+@import "@ionic/angular/css/typography.css";
+@import '@ionic/angular/css/display.css';
+
+/* Optional CSS utils that can be commented out */
+@import "@ionic/angular/css/padding.css";
+@import "@ionic/angular/css/float-elements.css";
+@import "@ionic/angular/css/text-alignment.css";
+@import "@ionic/angular/css/text-transformation.css";
+@import "@ionic/angular/css/flex-utils.css";
+
+
+/* Estilo para el contenido general */
+ion-content {
+    --ion-background-color: #f4f5f8;
+}
+
+.ion-content {
+    --ion-background-color: #ceff25;
+}
+
+.my-custom-button {
+    background-color: ceff25; /* Cambia el color de fondo a tu preferencia */
+    color:#222428; /* Cambia el color del texto si es necesario */
+  }
+
+/* Estilo para los cards */
+ion-card {
+  margin: 10px;
+  padding: 20px;
+  text-align: center;
+  background-color: #222428;
+  color: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.ion-card1 {
+    margin: 10px;
+    padding: 20px;
+    text-align: center;
+    background-color: #ffffff;
+    color: #222428;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+
+  .ion-content1{
+    color: #222428;
+  }
+
+  .ion-card2 {
+    margin: 10px;
+    padding: 20px;
+    text-align: center;
+    background-color: #ceff25;
+    color: #222428;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+
+/* Estilo para los íconos en los cards */
+ion-icon {
+  font-size: 55px;
+  color: #ceff25;
+}
+
+.ion-icon1 {
+    font-size: 55px;
+    color: #222428;
+  }
+
+/* Estilo para los íconos enA tabs */
+.toolerICON {
+    font-size: 40px;
+    color: #ceff25;
+  }
+
+
+/* Estilo para los textos en los cards */
+ion-card-content p {
+  margin-top: 10px;
+  font-size: 16px;
+  color: #ffffff;
+}
+
+
+/* Estilo para el encabezado */
+ion-header {
+  --ion-background-color: #ceff25;
+  color: #df1111;
+}
+
+/* Estilo para el título en el encabezado */
+ion-title {
+  font-size: 24px;
+}
+
+/* Estilo para la barra de herramientas en el encabezado */
+
+.imgheader {
+    width: 100%;
+    height: auto; /* Ajusta automáticamente la altura según la relación de aspecto */
+    max-height: calc(100vh - 56px); /* Resta el tamaño del encabezado para asegurarse de que la imagen se ajuste al contenido restante */
+    object-fit: cover;
+    opacity: 0.9;
+    overflow: hidden;
+    border-radius: 2%;
+  }

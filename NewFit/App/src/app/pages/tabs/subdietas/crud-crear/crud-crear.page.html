@@ -1,0 +1,73 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>crud_crear</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  
+  <ion-card>
+    <ion-card-content>
+      <ion-card-title>Crear Nuevo Alimento</ion-card-title><br>
+      <form (ngSubmit)="createNewFood()">
+        <ion-item>
+          <ion-label position="floating">Id</ion-label>
+          <ion-input type="text" [(ngModel)]="newFood.id_food" name="id" required></ion-input>
+        </ion-item>
+ 
+        <ion-item>
+          <ion-label position="floating">Nombre</ion-label>
+          <ion-input type="text" [(ngModel)]="newFood.name_food" name="name" required></ion-input>
+        </ion-item>
+ 
+        <ion-item>
+          <ion-label position="floating">Descripción</ion-label>
+          <ion-textarea [(ngModel)]="newFood.description_food" name="description" required></ion-textarea>
+        </ion-item>
+ 
+        <ion-item>
+          <ion-label position="floating">URL de la Imagen</ion-label>
+          <ion-input type="text" [(ngModel)]="newFood.img_food" name="image" required></ion-input>
+        </ion-item>
+ 
+        <ion-item>
+          <ion-label position="floating">Proteína</ion-label>
+          <ion-input type="number" [(ngModel)]="newFood.protein_food" name="protein" required></ion-input>
+        </ion-item>
+ 
+        <ion-item>
+          <ion-label position="floating">Carbohidratos</ion-label>
+          <ion-input type="number" [(ngModel)]="newFood.carbs_food" name="carbs" required></ion-input>
+        </ion-item>
+ 
+        <ion-item>
+          <ion-label position="floating">Grasa</ion-label>
+          <ion-input type="number" [(ngModel)]="newFood.fat_food" name="fat" required></ion-input>
+        </ion-item>
+ 
+        <ion-item>
+          <ion-label position="floating">Tipo</ion-label>
+          <ion-input type="number" [(ngModel)]="newFood.type_food" name="type" required></ion-input>
+        </ion-item>
+ 
+        <ion-item>
+          <ion-label position="floating">Calorías</ion-label>
+          <ion-input type="number" [(ngModel)]="newFood.calories_food" name="calories"></ion-input>
+        </ion-item>
+ 
+        <ion-button expand="full" type="submit">Crear Nuevo Alimento</ion-button>
+      </form>
+    </ion-card-content>
+  </ion-card>
+
+
+
+</ion-content>
+
+<!-- FOOTER // TABS -->
+  
+<ion-footer>
+  <ion-toolbar>
+    <app-barramenu></app-barramenu>
+  </ion-toolbar>
+</ion-footer>

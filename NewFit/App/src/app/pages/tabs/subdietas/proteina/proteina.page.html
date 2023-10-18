@@ -1,0 +1,32 @@
+
+
+
+<ion-content class="ion-padding">
+  
+  <h5 class="ion-card-title1">
+   A continuación, verás una lista con nuestras sugerencias de recetas diarias de alimentos altos en proteina para mejorar tu condición física:
+ </h5>
+ <ion-card *ngFor="let food of foods" class="food-card">
+  <img class="food-image" [src]="food.img_food" />
+  <ion-card-content>
+    <ion-card-title class="food-title">{{ food.name_food }}</ion-card-title>
+    <p class="food-description">{{ food.description_food }}</p>
+    <div class="nutrition-info">
+      <ion-icon name="nutrition" class="nutrition-icon"></ion-icon>
+      <p class="nutrition-label">Proteína: {{ food.protein_food }}g</p>
+      <p class="nutrition-label">Grasa: {{ food.fat_food }}g</p>
+      <p class="nutrition-label">Calorías: {{ food.calories_food }}</p>
+    </div>
+  </ion-card-content>
+</ion-card>
+
+
+</ion-content>
+
+<!-- FOOTER // TABS -->
+  
+<ion-footer>
+  <ion-toolbar>
+    <app-barramenu></app-barramenu>
+  </ion-toolbar>
+</ion-footer>

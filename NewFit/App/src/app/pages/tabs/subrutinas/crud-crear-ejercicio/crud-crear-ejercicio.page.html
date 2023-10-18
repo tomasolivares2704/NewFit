@@ -1,0 +1,68 @@
+
+<ion-content [fullscreen]="true">
+
+  
+  <ion-card>
+
+    <ion-card-content>
+
+      <ion-card-title>Crear Nuevo Ejercico</ion-card-title><br>
+
+        <form (ngSubmit)="createNewEjercicio()">
+          <ion-item>
+            <ion-label position="floating">Id</ion-label>
+            <ion-input type="number" [(ngModel)]="newEjercicio.id_exercide" name="id" required></ion-input>
+          </ion-item>
+          
+          <ion-item>
+            <ion-label position="floating">Clase</ion-label>
+            <ion-textarea [(ngModel)]="newEjercicio.class_exercise" name="description" required></ion-textarea>
+          </ion-item>
+  
+          <ion-item>
+            <ion-label position="floating">Expertis</ion-label>
+            <ion-input type="number" [(ngModel)]="newEjercicio.expertis_exercise" name="image" required></ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-label position="floating">URL de la imagen</ion-label>
+            <ion-input type="text" [(ngModel)]="newEjercicio.img_exercise" name="carbs" required></ion-input>
+          </ion-item>
+  
+          <ion-item>
+            <ion-label position="floating">Descripción</ion-label>
+            <ion-input type="text" [(ngModel)]="newEjercicio.description_exercise" name="fat" required></ion-input>
+          </ion-item>
+  
+          <ion-item>
+            <ion-label position="floating">Rutina Principiante</ion-label>
+            <ion-input type="text" [(ngModel)]="newEjercicio.beginer_exercise" name="type" required></ion-input>
+          </ion-item>
+  
+          <ion-item>
+            <ion-label position="floating">Rutina Intermedio</ion-label>
+            <ion-input type="text" [(ngModel)]="newEjercicio.inter_exercise" name="calories"></ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-label position="floating">Rutina Experto</ion-label>
+            <ion-input type="text" [(ngModel)]="newEjercicio.expert_exercise" name=""></ion-input>
+          </ion-item>
+  
+          <ion-button expand="full" type="submit">Crear Nuevo Ejercicio</ion-button>
+
+        </form>
+
+    </ion-card-content>
+  </ion-card>
+  
+
+</ion-content>
+
+<!-- FOOTER // TABS -->
+  
+<ion-footer>
+  <ion-toolbar>
+    <app-barramenu></app-barramenu>
+  </ion-toolbar>
+</ion-footer>
