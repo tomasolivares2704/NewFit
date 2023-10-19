@@ -33,6 +33,15 @@
             </ion-card-content>
           </ion-card>
         </ion-col>
+        <ion-col size="12">
+          <!-- Segunda tarjeta - Crear nueva ejercicio -->
+          <ion-card>
+            <ion-card-content [routerLink]="['/tabs/subrutinas/crud-crear-ejercicio']" >
+              <ion-icon name="nutrition-outline"></ion-icon>
+              <h2>CREAR NUEVA EJERCICIO</h2>
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
 
       </ion-row>
     </ion-grid>
@@ -45,10 +54,6 @@
       </ion-col>
     </ion-grid>
 
-    <ion-content class="ion-padding" >
-      <ion-button color="warning" [routerLink]="['/tabs/subrutinas/crud-crear-ejercicio']">Crear Nuevo Ejercicio</ion-button>
-    </ion-content>
-  
   </ion-content>
 
   <!-- FOOTER // TABS -->
