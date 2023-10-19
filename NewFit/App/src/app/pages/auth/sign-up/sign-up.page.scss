@@ -1,8 +1,28 @@
 .sign-up {
     padding: 10px;
 }
+.logo-container{
+    display: flex;
+    margin: auto;
+    margin-top: 20%;
+    margin-bottom: 10%;
+    align-items: center;
+    justify-items: center;
+    width: 350px;
+    height: 100px;
+}
 
 ion-button {
+    width: 170px;
+}
+
+ion-icon{
+    width: 30px;
+    height: 30px;
+}
+
+ion-button{
+    --background: black;
     width: 170px;
 }
 
