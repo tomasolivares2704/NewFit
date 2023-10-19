@@ -6,16 +6,16 @@
     <div class="profile-email">{{ user.email }}</div>
   </div>
 
-  <ion-card style="color: aliceblue;">
-    <ion-list lines="none" style="text-align: left; margin-left: 5%;">
-
-      <ion-buttons slot="end">
+  <ion-card style="color: aliceblue; margin: auto;">
+    <ion-list lines="none" style="text-align: left; margin-left: 5%; margin: auto; border-radius: 5%;">
+      <ion-buttons style="justify-content: end;">
+        <h2 style="margin-right: 22%;">Datos</h2>
         <ion-button>
           <ion-icon name="create-outline"></ion-icon>
         </ion-button>
       </ion-buttons>
       <!--Se dibuja Nivel de Actividad Física-->
-      <ion-item style="--background: #222428;">
+      <ion-item>
         <ion-label>Actividad Física: </ion-label>
         <ion-input type="string" class="small-input" [disabled]="true"></ion-input>
       </ion-item>
@@ -37,7 +37,7 @@
         <ion-input type="string" class="small-input" [disabled]="true"></ion-input>
       </ion-item>
     </ion-list>
-
+<!--
     <ion-list>
       <ion-item *ngFor="let food of foods">
         <ion-label>
@@ -49,10 +49,11 @@
         </ion-label>
       </ion-item>
     </ion-list>
-    
-  </ion-card>
+  -->
+
   <ion-button (click)="signOut()" shape="round" expand="full" class="sign-out-button">
     Cerrar Sesións
     <ion-icon slot="end" name="log-out-outline"></ion-icon>
   </ion-button>
+  </ion-card>
 </ion-content>
