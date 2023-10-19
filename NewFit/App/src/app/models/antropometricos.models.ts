@@ -1,8 +1,10 @@
-export interface antropometricos {
+export interface Antropometricos {
     id:string,
     estatura:string,
     peso:string,
-    niveles: Nivel[]
+    edad: number,
+    sexo: Sexo[],
+    niveles: Nivel[],
     objetivos: Objetivo[]
 }
 
@@ -17,3 +19,7 @@ export interface Objetivo {
     disminuir: string,
 }
 
+export interface Sexo {
+    masculino: string,
+    femenino: string,
+}

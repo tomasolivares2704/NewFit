@@ -6,12 +6,12 @@
     <ion-card-content [routerLink]="['/tabs/profile']">
       <ion-grid>
         <ion-row>
-          <ion-col size="5" style="margin: auto;">
+          <ion-col size="6" style="margin: auto;">
             <ion-icon name="person-circle-outline"></ion-icon>
             <h2>{{user.displayName}}</h2>
             <p style="font-size: 10px;">{{ user.email }}</p>
           </ion-col>
-          <ion-col size="2"></ion-col>
+          <ion-col size="1"></ion-col>
           <ion-col size="5" style="text-align: left;">
             <!-- Se utiliza la información del LS para pintarla en el card del perfil -->
             <p style="color: #ceff25;">Objetivo:</p>
@@ -70,10 +70,9 @@
     </ion-grid>
   </ion-card-content>
 </ion-card>
-
-
+<br>
   <!-- Última fila con progreso diario de metas -->
-  <div class="progress-container">
+  <div class="progress-container" style="width: 90%; margin: auto;">
     <ion-label class="progress-label">PROGRESO DIARIO DE METAS</ion-label>
     <ion-progress-bar class="progress-bar" value="0.75"></ion-progress-bar>
     <ion-label class="progress-value">75%</ion-label>
