@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormControl, FormGroup, Validators, FormArray } from '@angular/forms';
 import { UtilsService } from 'src/app/services/utils.service';
 import { FirebaseService } from 'src/app/services/firebase.service';
 import { User } from 'src/app/models/user.models';
@@ -28,7 +28,7 @@ export class AntropometricosPage implements OnInit {
     'edad': new FormControl ('', [Validators.required]),
     'altura': new FormControl ('', [Validators.required]),
     'peso': new FormControl ('', [Validators.required]),
-    'sexo': new FormControl ('', [Validators.required]),
+    'sexo': new FormArray([], [Validators.required]),
   });
 
   ngOnInit() {
@@ -52,7 +52,7 @@ export class AntropometricosPage implements OnInit {
       // Crea un objeto Antropometrico con los datos del formulario
       const antropometricoData: Omit<Antropometricos, 'id'> = {
         edad: +formData.edad,
-        altura: +formData.altura,
+        estatura: formData.altura,
         peso: formData.peso,
         sexo: formData.sexo
       };
@@ -63,13 +63,13 @@ export class AntropometricosPage implements OnInit {
           // Define la ruta a la subcolección "Antropometrico" del usuario
           const antropometricoCollectionPath = `user/${this.user.uid}/antropometrico`;
   
-          await this.FirebaseService.addToSubcollectionWithAutoID(antropometricoCollectionPath, '', 'antropometrico', antropometricoData );
+          await this.firebaseSvc.addToSubcollection(antropometricoCollectionPath,'antropometrico', antropometricoData );
         } else {
           console.error('Usuario no autenticado o falta información del usuario');
         }
   
         // Redirige a la siguiente página
-        this.Router.navigate(['/journey']);
+        this.utilsSvc.routerLink('/tabs/home');
       } catch (error) {
         console.error('Error al agregar datos a la subcolección Antropometrico:', error);
       }

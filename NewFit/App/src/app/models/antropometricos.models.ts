@@ -3,9 +3,7 @@ export interface Antropometricos {
     estatura:string,
     peso:string,
     edad: number,
-    sexo: Sexo[],
-    niveles: Nivel[],
-    objetivos: Objetivo[]
+    sexo: string[],
 }
 
 export interface Nivel {
