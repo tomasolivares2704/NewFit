@@ -22,5 +22,35 @@
   }
   
   .sign-out-button {
+    --background: black;
     margin-top: 20px;
   }
+
+  ion-icon{
+    font-size: 30px;
+  }
+
+  
+ion-card{
+  width: 90%;
+  height: 60%;
+}
+
+.small-input {
+  font-size: 14px;
+  width: 100px;
+  height: 24px;
+  white-space: nowrap; /* Evita saltos de línea */
+}
+
+ion-list{
+  background-color: #222428;
+}
+
+ion-item{
+  --background: #222428;
+}
+
+ion-item:disabled{
+  color:aliceblue;
+}

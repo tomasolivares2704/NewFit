@@ -6,6 +6,38 @@
     <div class="profile-email">{{ user.email }}</div>
   </div>
 
+  <ion-card style="color: aliceblue;">
+    <ion-list lines="none" style="text-align: left; margin-left: 5%;">
+
+      <ion-buttons slot="end">
+        <ion-button>
+          <ion-icon name="create-outline"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+      <!--Se dibuja Nivel de Actividad Física-->
+      <ion-item style="--background: #222428;">
+        <ion-label>Actividad Física: </ion-label>
+        <ion-input type="string" class="small-input" [disabled]="true"></ion-input>
+      </ion-item>
+      <!--Se dibuja Altura-->
+      <ion-item>
+        <ion-label>Altura: </ion-label>
+        <ion-input type="number" class="small-input" [disabled]="true"></ion-input>
+        <ion-text>cm</ion-text>
+      </ion-item>
+      <!--Se dibuja Peso-->
+      <ion-item>
+        <ion-label>Peso: </ion-label>
+        <ion-input type="number" class="small-input" [disabled]="true"></ion-input>
+        <ion-text>Kg</ion-text>
+      </ion-item>
+      <!--Se dibuja Objetivo-->
+      <ion-item>
+        <ion-label>Objetivo: </ion-label>
+        <ion-input type="string" class="small-input" [disabled]="true"></ion-input>
+      </ion-item>
+    </ion-list>
+  </ion-card>
   <ion-button (click)="signOut()" shape="round" expand="full" class="sign-out-button">
     Cerrar Sesión
     <ion-icon slot="end" name="log-out-outline"></ion-icon>
