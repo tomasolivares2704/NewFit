@@ -54,8 +54,6 @@ export class ProfilePage implements OnInit {
   getFoods(){
     let user: User = this.utilsSvc.getElementInLocalStorage('user')
     let path = `users/${user.uid}`;
-  
-
     let sub = this.firebaseSrv.getSubcollection(path, 'foods').subscribe({
       next: (res: Foods[]) => {
         console.log(res);
