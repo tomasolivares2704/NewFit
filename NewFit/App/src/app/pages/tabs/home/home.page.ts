@@ -4,7 +4,6 @@ import { Task } from 'src/app/models/task.models';
 import { FirebaseService } from 'src/app/services/firebase.service';
 import { UtilsService } from 'src/app/services/utils.service';
 import { AddUpdateTaskComponent } from 'src/app/shared/components/add-update-task/add-update-task.component';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -19,8 +18,7 @@ export class HomePage implements OnInit {
 
   constructor(
     private firebaseSvc: FirebaseService,
-    private utilsSvc: UtilsService,
-    private router: Router,
+    private utilsSvc: UtilsService
   ) { }
 
   ngOnInit() {

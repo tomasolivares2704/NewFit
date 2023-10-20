@@ -49,7 +49,7 @@ export class SignUpPage implements OnInit {
         }
 
         this.utilsSvc.setElementInLocalStorage('user', user);
-        this.utilsSvc.routerLink('/tabs');
+        this.utilsSvc.routerLink('/auth/antropometricos');
         this.utilsSvc.dismissLoading();
 
         this.utilsSvc.presentToast({
