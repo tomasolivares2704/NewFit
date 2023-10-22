@@ -25,7 +25,11 @@ const routes: Routes = [
   {
     path: 'subrutinas',
     loadChildren: () => import('./subrutinas/subrutinas.module').then( m => m.SubrutinasPageModule)
+  },  {
+    path: 'estadisticas',
+    loadChildren: () => import('./estadisticas/estadisticas.module').then( m => m.EstadisticasPageModule)
   },
+
 ];
 
 @NgModule({
