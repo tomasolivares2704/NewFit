@@ -5,4 +5,5 @@ export interface Foods {
     fats:string,
     name:string,
     protein:string,
+    img: string,
 }
