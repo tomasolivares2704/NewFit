@@ -8,17 +8,17 @@
         <ion-row>
           <ion-col size="6" style="margin: auto;">
             <ion-icon name="person-circle-outline"></ion-icon>
-            <h2>{{user.displayName}}</h2>
+            <h2>{{ user.name }}</h2>
             <p style="font-size: 10px;">{{ user.email }}</p>
           </ion-col>
           <ion-col size="1"></ion-col>
           <ion-col size="5" style="text-align: left;">
             <!-- Se utiliza la información del LS para pintarla en el card del perfil -->
             <p style="color: #ceff25;">Objetivo:</p>
-            <p></p>
+            <p>{{antropometrico.objetivo}}</p>
             <br>
             <p style="color: #ceff25;">Actividad Física:</p>
-            <p></p>
+            <p>{{antropometrico.nivelActividad}}</p>
           </ion-col>
         </ion-row>
       </ion-grid>
