@@ -78,6 +78,30 @@ export class ProfilePage implements OnInit {
     })
   }
 
+  deleteUser() {
+    this.utilsSvc.presentAlert({
+      header: 'Eliminar Cuenta',
+      message: '¿Estás seguro de que quieres eliminar tu cuenta?',
+      mode: 'ios',
+      buttons: [
+        {
+          text: 'Cancelarr',
+          role: 'cancel'
+        },{
+        text: 'Si, eliminar',
+        handler: () =>{
+
+          this.firebaseSrv.deleteUser()
+            .then(() => {
+            })
+            .catch(error => {
+              console.error('Error al eliminar la cuenta de usuario:', error);
+            });
+          }
+        }]
+      });
+  }
+
   modifyData() {
     if (this.inputEnabled) {
       //Actualiza datos antropometricos en la base de datos de Firebase
