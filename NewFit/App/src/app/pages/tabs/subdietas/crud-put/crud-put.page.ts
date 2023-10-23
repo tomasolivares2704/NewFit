@@ -46,7 +46,8 @@ export class CrudPutPage implements OnInit {
       calories: ['', Validators.required],
       carbs: ['', Validators.required],
       fats: ['', Validators.required],
-      protein: ['', Validators.required]
+      protein: ['', Validators.required],
+      img: ['', Validators.required],
     });
   }
 
@@ -75,7 +76,8 @@ export class CrudPutPage implements OnInit {
       carbs: this.foodForm.value.carbs.toString(),
       fats: this.foodForm.value.fats.toString(),
       name: this.foodForm.value.name,
-      protein: this.foodForm.value.protein.toString()
+      protein: this.foodForm.value.protein.toString(),
+      img: this.foodForm.value.img.toString(),
     };
 
     const path = `user/${this.user.uid}`;
@@ -100,7 +102,8 @@ export class CrudPutPage implements OnInit {
       carbs: this.foodForm.value.carbs.toString(),
       fats: this.foodForm.value.fats.toString(),
       name: this.foodForm.value.name,
-      protein: this.foodForm.value.protein.toString()
+      protein: this.foodForm.value.protein.toString(),
+      img: this.foodForm.value.img.toString(),
     };
   
     const path = `user/${this.user.uid}/foods/${foodId}`;

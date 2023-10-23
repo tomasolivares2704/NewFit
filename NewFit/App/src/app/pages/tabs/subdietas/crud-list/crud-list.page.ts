@@ -43,7 +43,8 @@ export class CrudListPage implements OnInit {
       calories: food.calories,
       carbs: food.carbs,
       fats: food.fats,
-      protein: food.protein
+      protein: food.protein,
+      img: food.img,
     });
     console.log("ID del alimento seleccionado:", food.id);
   }
@@ -71,7 +72,8 @@ export class CrudListPage implements OnInit {
       calories: ['', Validators.required],
       carbs: ['', Validators.required],
       fats: ['', Validators.required],
-      protein: ['', Validators.required]
+      protein: ['', Validators.required],
+      img: ['', Validators.required]
     });
   }
 
@@ -94,16 +96,20 @@ export class CrudListPage implements OnInit {
     })
   }
   
-  updateFood(id: string) {
-    console.log("ID del alimento seleccionado:", id);
+
+    updateFood(id: string) {
+      console.log("ID del alimento en la función updateFood:", id);
+      console.log("selectedFoodId:", this.selectedFoodId);
   
-    const updatedFoodData = {
-      calories: this.foodForm.value.calories.toString(),
-      carbs: this.foodForm.value.carbs.toString(),
-      fats: this.foodForm.value.fats.toString(),
-      name: this.foodForm.value.name,
-      protein: this.foodForm.value.protein.toString()
-    };
+      const updatedFoodData = {
+        calories: this.foodForm.value.calories.toString(),
+        carbs: this.foodForm.value.carbs.toString(),
+        fats: this.foodForm.value.fats.toString(),
+        name: this.foodForm.value.name,
+        protein: this.foodForm.value.protein.toString(),
+        img: this.foodForm.value.protein.toString(),
+
+      };
   
     const path = `user/${this.user.uid}/foods/${id}`;
   
