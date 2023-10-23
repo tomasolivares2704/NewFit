@@ -4,6 +4,7 @@ import { Foods } from 'src/app/models/food.models';
 import { FirebaseService } from 'src/app/services/firebase.service';
 import { UtilsService } from 'src/app/services/utils.service';
 import { Antropometrico } from 'src/app/models/antropometricos.models';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 
 @Component({
@@ -24,11 +25,21 @@ export class ProfilePage implements OnInit {
     private utilsSvc: UtilsService,
   ) { }
 
+  form = new FormGroup({
+    'edad': new FormControl ('', [Validators.required]),
+    'estatura': new FormControl ('', [Validators.required]),
+    'peso': new FormControl ('', [Validators.required]),
+    'sexo': new FormControl('', [Validators.required]),
+    'objetivo': new FormControl ('', [Validators.required]),
+    'nivelActividad': new FormControl ('', [Validators.required]),
+    });
+
   ngOnInit() {
   }
 
   ionViewWillEnter() {
     this.getUser();
+    this.getUserInfo();
     this.getFoods();
   }
 
@@ -55,13 +66,28 @@ export class ProfilePage implements OnInit {
     });
   }
 
+  getUserInfo() {
+    let path = `user/${this.user.uid}`;
+    let sub = this.firebaseSrv.getSubcollection(path, 'antropometrico').subscribe({
+
+      next: (res: Antropometrico[]) => {
+        this.antropometrico = res[0];
+        console.log(res);
+        sub.unsubscribe();
+      }
+    })
+  }
+
   modifyData() {
     if (this.inputEnabled) {
       //Actualiza datos antropometricos en la base de datos de Firebase
      let path = `user/${this.user.uid}/antropometrico/${this.antropometrico.id}`;
-     let altura = this.antropometrico.altura;
+     let nivelActividad = this.antropometrico.nivelActividad;
+     let estatura = this.antropometrico.estatura;
+     let peso = this.antropometrico.peso;
+     let objetivo = this.antropometrico.objetivo;
  
-     this.firebaseSrv.updateDocument(path, { altura })
+     this.firebaseSrv.updateDocument(path, {nivelActividad, estatura, peso, objetivo})
        .then(() => {
          this.inputEnabled = false; // Desactiva la edición
        })
@@ -84,13 +110,8 @@ export class ProfilePage implements OnInit {
     })
   }
 
-
-
-
-
-
-
-
-
+  enableInput() {
+    this.inputEnabled = !this.inputEnabled;
+  }
 
 }

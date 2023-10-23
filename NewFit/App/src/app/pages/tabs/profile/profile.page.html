@@ -8,7 +8,7 @@
 
   <ion-card style="color: aliceblue; margin: auto;">
     <ion-list lines="none" style="text-align: left; margin-left: 5%; margin: auto; border-radius: 5%;">
-      <ion-buttons style="justify-content: end;">
+      <ion-buttons style="justify-content: end;" (click)="enableInput()">
         <h2 style="margin-right: 22%;">Datos</h2>
         <ion-button>
           <ion-icon name="create-outline"></ion-icon>
@@ -16,25 +16,25 @@
       </ion-buttons>
       <!--Se dibuja Nivel de Actividad Física-->
       <ion-item>
-        <ion-label>Actividad Física: </ion-label>
-        <ion-input type="string" class="small-input" [disabled]="true"></ion-input>
+        <ion-label>Actividad F: </ion-label>
+        <ion-input [(ngModel)]="antropometrico.nivelActividad" type="string" [disabled]="!inputEnabled"></ion-input>
       </ion-item>
       <!--Se dibuja Altura-->
       <ion-item>
-        <ion-label>Altura: </ion-label>
-        <ion-input type="number" class="small-input" [disabled]="true"></ion-input>
+        <ion-label>Estatura: </ion-label>
+        <ion-input [(ngModel)]="antropometrico.estatura" type="number" class="small-input" [disabled]="!inputEnabled"></ion-input>
         <ion-text>cm</ion-text>
       </ion-item>
       <!--Se dibuja Peso-->
       <ion-item>
         <ion-label>Peso: </ion-label>
-        <ion-input type="number" class="small-input" [disabled]="true"></ion-input>
+        <ion-input [(ngModel)]="antropometrico.peso" type="number" class="small-input" [disabled]="!inputEnabled"></ion-input>
         <ion-text>Kg</ion-text>
       </ion-item>
       <!--Se dibuja Objetivo-->
       <ion-item>
         <ion-label>Objetivo: </ion-label>
-        <ion-input type="string" class="small-input" [disabled]="true"></ion-input>
+        <ion-input [(ngModel)]="antropometrico.objetivo" type="string" class="small-input" [disabled]="!inputEnabled"></ion-input>
       </ion-item>
     </ion-list>
 
@@ -50,10 +50,12 @@
       </ion-item>
     </ion-list>
 
-
-  <ion-button (click)="signOut()" shape="round" expand="full" class="sign-out-button">
-    Cerrar Sesións
-    <ion-icon slot="end" name="log-out-outline"></ion-icon>
-  </ion-button>
+    <ion-button (click)="modifyData()" shape="round" expand="full" class="sign-out-button" *ngIf="inputEnabled">
+      Guardar
+    </ion-button>
+    <ion-button (click)="signOut()" shape="round" expand="full" class="sign-out-button">
+      Cerrar Sesións
+      <ion-icon slot="end" name="log-out-outline"></ion-icon>
+    </ion-button>
   </ion-card>
 </ion-content>

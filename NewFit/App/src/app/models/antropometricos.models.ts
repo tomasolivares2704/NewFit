@@ -4,5 +4,7 @@ export interface Antropometrico {
     peso:string,
     edad: number,
     sexo: string,
+    objetivo: string,
+    nivelActividad: string
 }
 
