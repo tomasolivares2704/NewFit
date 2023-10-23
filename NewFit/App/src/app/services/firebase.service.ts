@@ -34,6 +34,23 @@ export class FirebaseService {
     return this.auth.authState;
   }
 
+  async deleteUser(): Promise<void> {
+    try {
+      const user = await this.auth.currentUser;
+
+      if (user) {
+        await this.auth.signOut();
+
+        await user.delete();
+        console.log('Cuenta de usuario eliminada con éxito.');
+      } else {
+        console.error('No se encontró un usuario autenticado.');
+      }
+    } catch (error) {
+      console.error('Error al eliminar la cuenta de usuario:', error);
+    }
+  }
+
   async signOut() {
     await this.auth.signOut();
     this.utilsSvc.routerLink('/auth');
