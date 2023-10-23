@@ -89,7 +89,7 @@ export class CrudListPage implements OnInit {
     })
   }
   
-    // Metodo para Actualizar Aliemento (Food) 
+    // Metodo para Actualizar Aliemento (Food) //
     updateFood(id: string) {
       console.log("ID del alimento en la función updateFood:", id);
       console.log("selectedFoodId:", this.selectedFoodId);
@@ -101,7 +101,7 @@ export class CrudListPage implements OnInit {
         fats: this.foodForm.value.fats.toString(),
         name: this.foodForm.value.name,
         protein: this.foodForm.value.protein.toString(),
-        img: this.foodForm.value.protein.toString(),
+        img: this.foodForm.value.img.toString(),
 
       };
   
