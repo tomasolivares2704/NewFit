@@ -26,6 +26,10 @@ const routes: Routes = [
     path: 'subrutinas',
     loadChildren: () => import('./subrutinas/subrutinas.module').then( m => m.SubrutinasPageModule)
   },
+  {
+    path: 'antropometrico',
+    loadChildren: () => import('./antropometrico/antropometrico.module').then( m => m.AntropometricoPageModule)
+  },
 ];
 
 @NgModule({

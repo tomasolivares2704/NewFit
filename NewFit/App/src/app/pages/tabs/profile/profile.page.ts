@@ -3,6 +3,7 @@ import { User } from 'src/app/models/user.models';
 import { Foods } from 'src/app/models/food.models';
 import { FirebaseService } from 'src/app/services/firebase.service';
 import { UtilsService } from 'src/app/services/utils.service';
+import { Antropometrico } from 'src/app/models/antropometricos.models';
 
 
 @Component({
@@ -13,7 +14,10 @@ import { UtilsService } from 'src/app/services/utils.service';
 export class ProfilePage implements OnInit {
 
   user = {} as User;
+  antropometrico = {} as Antropometrico;
   foods: Foods[] = [];
+
+  inputEnabled: boolean = false;
 
   constructor(
     private firebaseSrv: FirebaseService,
@@ -49,6 +53,22 @@ export class ProfilePage implements OnInit {
         }
       ]
     });
+  }
+
+  modifyData() {
+    if (this.inputEnabled) {
+      //Actualiza datos antropometricos en la base de datos de Firebase
+     let path = `user/${this.user.uid}/antropometrico/${this.antropometrico.id}`;
+     let altura = this.antropometrico.altura;
+ 
+     this.firebaseSrv.updateDocument(path, { altura })
+       .then(() => {
+         this.inputEnabled = false; // Desactiva la edición
+       })
+       .catch((error) => {
+         console.error('Error al actualizar datos antropometricos en Firebase:', error);// Error al actualizar
+       });
+   };
   }
 
   getFoods(){

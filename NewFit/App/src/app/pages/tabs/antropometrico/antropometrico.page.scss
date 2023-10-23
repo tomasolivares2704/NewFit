@@ -1,0 +1,32 @@
+.sign-up {
+    padding: 50px;
+}
+
+.logo-container{
+    display: flex;
+    margin: auto;
+    margin-top: 20%;
+    margin-bottom: 10%;
+    align-items: center;
+    justify-items: center;
+    width: 350px;
+    height: 100px;
+}
+
+ion-icon{
+    width: 30px;
+    height: 30px;
+}
+
+ion-button{
+    --background: black;
+    width: 170px;
+}
+
+
+@media (min-width: 768px) {
+    form{
+        width: 500px;
+        padding: 50px 10px;
+    }
+}

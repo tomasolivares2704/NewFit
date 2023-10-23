@@ -1,0 +1,49 @@
+
+<ion-content>
+  <div class="logo-container">
+    <app-logo></app-logo>
+  </div>
+  <div>
+    <ion-card>
+      <form (keyup.enter)="saveData()" (ngSubmit)="saveData()" class="ion-text-center">
+
+        <app-custom-input [control]="form.controls.edad" type="number" label="Edad" icon="people-outline"></app-custom-input>
+        <div class="validators" *ngIf="form.controls.edad.errors && form.controls.edad.dirty">
+          <div *ngIf="form.controls.edad.errors?.['required']">Ingresa tu edad</div>
+        </div>
+
+        <app-custom-input [control]="form.controls.estatura" type="number" label="Estatura" icon="resize-outline"></app-custom-input>
+        <div class="validators" *ngIf="form.controls.estatura.errors && form.controls.estatura.dirty">
+          <div *ngIf="form.controls.estatura.errors?.['required']">Ingresa tu estatura</div>
+        </div>
+
+        <app-custom-input [control]="form.controls.peso" type="number" label="Peso" icon="barbell-outline"></app-custom-input>
+        <div class="validators" *ngIf="form.controls.peso.errors && form.controls.peso.dirty">
+          <div *ngIf="form.controls.peso.errors?.['required']">Ingresa tu estatura</div>
+        </div>
+
+        <app-custom-input [control]="form.controls.sexo" type="string" label="Sexo" icon="transgender-outline"></app-custom-input>
+        <div class="validators" *ngIf="form.controls.sexo.errors && form.controls.sexo.dirty">
+          <div *ngIf="form.controls.peso.errors?.['required']">Ingresa tu sexo</div>
+        </div>
+
+        <app-custom-input [control]="form.controls.objetivo" type="string" label="Objetivo" icon="golf-outline"></app-custom-input>
+        <div class="validators" *ngIf="form.controls.objetivo.errors && form.controls.peso.dirty">
+          <div *ngIf="form.controls.objetivo.errors?.['required']">Ingresa tu estatura</div>
+        </div>
+
+        <app-custom-input [control]="form.controls.nivelActividad" type="string" label="Nivel de Actividad Física" icon="heart-circle-outline"></app-custom-input>
+        <div class="validators" *ngIf="form.controls.nivelActividad.errors && form.controls.sexo.dirty">
+          <div *ngIf="form.controls.nivelActividad.errors?.['required']">Ingresa tu sexo</div>
+        </div>
+
+        <ion-button class="ion-margin-vertical" [disabled]="form.invalid" type="submit" shape="round">
+          Acceder
+          <ion-icon slot="end" name="log-in-outline"></ion-icon>
+        </ion-button>
+
+      </form>
+    </ion-card>
+
+  </div>
+</ion-content>

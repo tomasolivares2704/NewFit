@@ -1,12 +1,13 @@
-import { NgModule} from '@angular/core';
+import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { AntropometricosPageRoutingModule } from './antropometricos-routing.module';
+import { AntropometricoPageRoutingModule } from './antropometrico-routing.module';
 
-import { AntropometricosPage } from './antropometricos.page';
+import { AntropometricoPage } from './antropometrico.page';
+
 import { SharedModule } from 'src/app/shared/shared.module';
 
 @NgModule({
@@ -14,10 +15,10 @@ import { SharedModule } from 'src/app/shared/shared.module';
     CommonModule,
     FormsModule,
     IonicModule,
-    AntropometricosPageRoutingModule,
+    AntropometricoPageRoutingModule,
     ReactiveFormsModule,
     SharedModule
   ],
-  declarations: [AntropometricosPage],
+  declarations: [AntropometricoPage]
 })
-export class AntropometricosPageModule {}
+export class AntropometricoPageModule {}
