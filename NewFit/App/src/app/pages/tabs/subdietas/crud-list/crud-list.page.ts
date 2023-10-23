@@ -1,9 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { CrudService } from 'src/app/services/api/crud.service';
-import { ItemFood } from 'src/app/interfaces/itemfood';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ReactiveFormsModule } from '@angular/forms';
-import { ModalController } from '@ionic/angular';
 
 //Firebase
 import { FirebaseService } from 'src/app/services/firebase.service';
@@ -25,19 +21,14 @@ export class CrudListPage implements OnInit {
   isModalOpen = false;
   inputEnabled: boolean;
 
-  setOpen(isOpen: boolean) {
-    this.isModalOpen = isOpen;
-  }
-
-  setOpen2(isOpen: boolean) {
-    this.isModalOpen = isOpen;
-  }
 
   setModalState(isOpen: boolean) {
     this.isModalOpen = isOpen;
   }
 
+  //Funcion para Cargar los datos al formulario FoodForm
   loadFoodData(food: any) {
+    //Metodo para Actualizar Valores del Formulario
     this.foodForm.patchValue({
       name: food.name,
       calories: food.calories,
@@ -50,10 +41,9 @@ export class CrudListPage implements OnInit {
   }
   
 
-  setFoodId(foodId) {
-    // Suponiendo que tengas una propiedad llamada selectedFoodId en tu clase
-    this.selectedFoodId = foodId;
-  }
+  //setFoodId(foodId) {
+    //this.selectedFoodId = foodId;
+  //}
 
   selectedFoodId: string;
 
@@ -65,7 +55,7 @@ export class CrudListPage implements OnInit {
     this.initForm();
   }
 
-  //Optener Valores
+  //Metodo Inicializar el Formulario Reactivo Angular
   initForm() {
     this.foodForm = this.formBuilder.group({
       name: ['', Validators.required],
@@ -82,10 +72,13 @@ export class CrudListPage implements OnInit {
     return this.user = this.utilsSvc.getElementInLocalStorage('user');
   }
 
-  //Funcion para Obtener Foods
+  //Funcion para Obtener la Lista de Foods(Alimentos)
   getFoods(){
+    // Obtener Objeto User
     let user: User = this.utilsSvc.getElementInLocalStorage('user')
+    // Crea Ruta
     let path = `user/${user.uid}`;
+    //Obtiene la SubCollecion
     let sub = this.firebaseSrv.getSubcollection(path, 'foods').subscribe({
       next: (res: Foods[]) => {
         console.log(res);
@@ -96,11 +89,12 @@ export class CrudListPage implements OnInit {
     })
   }
   
-
+    // Metodo para Actualizar Aliemento (Food) 
     updateFood(id: string) {
       console.log("ID del alimento en la función updateFood:", id);
       console.log("selectedFoodId:", this.selectedFoodId);
-  
+      
+      // Crea Objeto 
       const updatedFoodData = {
         calories: this.foodForm.value.calories.toString(),
         carbs: this.foodForm.value.carbs.toString(),
@@ -111,8 +105,10 @@ export class CrudListPage implements OnInit {
 
       };
   
+    // Construye la Ruta
     const path = `user/${this.user.uid}/foods/${id}`;
   
+    // Metodo UpDate en la Ruta
     this.firebaseSrv.updateDocument(path, updatedFoodData)
       .then(() => {
         console.log('Alimento actualizado correctamente.');
