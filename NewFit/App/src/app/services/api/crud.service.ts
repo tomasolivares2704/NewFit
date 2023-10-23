@@ -2,8 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
-import { Foods } from 'src/app/interfaces/foods';
-import { EjercicioItem } from 'src/app/interfaces/exerciseitem';
+
 
 interface FoodItem {
   id_food: number;
@@ -42,7 +41,7 @@ export class CrudService {
 
   constructor(private http: HttpClient) { }
 
-  getAllFoods(): Observable<FoodItem[]> {
+ /* getAllFoods(): Observable<FoodItem[]> {
     return this.http.get<{ items: FoodItem[] }>(this.apiUrl)
       .pipe(map(response => response.items));
   }
@@ -70,5 +69,5 @@ export class CrudService {
     );
   }
 
-
+*/
 }

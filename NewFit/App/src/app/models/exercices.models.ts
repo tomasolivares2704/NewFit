@@ -1,5 +1,6 @@
-export interface EjercicioItem {
-    id_exercide: number;
+export interface Exercices {
+    id: string;
+    name: string;
     class_exercise: number;
     expertis_exercise: number;
     img_exercise: string;

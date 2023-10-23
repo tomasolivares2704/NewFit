@@ -1,11 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { CrudService } from 'src/app/services/api/crud.service';
-import { ItemFood } from 'src/app/interfaces/itemfood';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ReactiveFormsModule } from '@angular/forms';
-import { ModalController } from '@ionic/angular';
-
-
 
 import { FirebaseService } from 'src/app/services/firebase.service';
 import { UtilsService } from 'src/app/services/utils.service';
@@ -21,7 +15,6 @@ import { Foods } from 'src/app/models/food.models';
 export class CrudPutPage implements OnInit {
 
   foodForm: FormGroup;
-
   
   
   foods: Foods[] = [];
@@ -67,8 +60,6 @@ export class CrudPutPage implements OnInit {
       }
     })
   }
-
-
 
   createNewFood() {
     const newFoodData = {

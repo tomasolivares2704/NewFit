@@ -1,7 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { CrudService } from 'src/app/services/api/crud.service';
-import { EjercicioItem } from 'src/app/interfaces/exerciseitem';
-import { FormsModule } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+
+import { FirebaseService } from 'src/app/services/firebase.service';
+import { UtilsService } from 'src/app/services/utils.service';
+
+import { User } from 'src/app/models/user.models';
+import { Exercices } from 'src/app/models/exercices.models';
+
 
 @Component({
   selector: 'app-crud-crear-ejercicio',
@@ -10,39 +15,93 @@ import { FormsModule } from '@angular/forms';
 })
 export class CrudCrearEjercicioPage implements OnInit {
 
-  newEjercicio: EjercicioItem = {
-    id_exercide: 0,
-    class_exercise: 0,
-    expertis_exercise: 0,
-    img_exercise: '',
-    description_exercise: '',
-    beginer_exercise: '',
-    inter_exercise: '',
-    expert_exercise: '',
-  };
+  exerciseForm: FormGroup;
 
-  ejercicios: EjercicioItem[] = [];
+  user = {} as User;
+  exercices = {} as Exercices;
+  inputEnabled: boolean;
 
-  constructor(private CrudService: CrudService ) { }
+  constructor(
+    private firebaseSrv: FirebaseService,
+    private utilsSvc: UtilsService,
+  ) { }
 
   ngOnInit() {
+    this.getUser();
   }
 
-  createNewEjercicio() {
-    this.CrudService.createdEjercicio(this.newEjercicio)
-      .subscribe(createdEjercicio => {
-        console.log('Nuevo ejercicio creado:', createdEjercicio);
-        this.newEjercicio = {
-          id_exercide: 0,
-          class_exercise: 0,
-          expertis_exercise: 0,
-          img_exercise: '',
-          description_exercise: '',
-          beginer_exercise: '',
-          inter_exercise: '',
-          expert_exercise: '',
-        };
-      });
+  getUser() {
+    return this.user = this.utilsSvc.getElementInLocalStorage('user');
+  }
+
+  form = new FormGroup({
+      'name': new FormControl ('', [Validators.required]),
+      'class_exercise': new FormControl ('', [Validators.required]),
+      'expertis_exercise': new FormControl ('', [Validators.required]),
+      'img_exercise': new FormControl ('', [Validators.required]),
+      'description_exercise': new FormControl ('', [Validators.required]),
+      'beginer_exercise': new FormControl ('', [Validators.required]),
+      'inter_exercise': new FormControl ('', [Validators.required]),
+      'expert_exercise': new FormControl ('', [Validators.required]),
+    });
+  
+  
+  getExercices(){
+    let user: User = this.utilsSvc.getElementInLocalStorage('user')
+    let path = `user/${user.uid}`;
+    let sub = this.firebaseSrv.getSubcollection(path, 'exercises').subscribe({
+      next: (res: Exercices[]) => {
+        console.log(res);
+        this.exercices = res[0]
+        sub.unsubscribe()
+        
+      }
+    })
+  }
+
+  createNewExercice(){
+    let path = `user/${this.user.uid}`;
+
+    this.firebaseSrv.addToSubcollection(path, 'exercises', this.form.value)
+    .then(() => {
+      console.log('Nuevo ejercicio añadido correctamente.');
+      this.exerciseForm.reset(); // Limpiar el formulario después de agregar el alimento
+    })
+    .catch(error => {
+      console.error('Error al añadir el nuevo ejercicio', error);
+      // Manejo de errores si es necesario
+    });
+
+  }
+
+  modifyData() {
+    if (this.inputEnabled) {
+      //Actualiza datos antropometricos en la base de datos de Firebase
+     let path = `user/${this.user.uid}/exercices/${this.exercices.id}`;
+
+     let name = this.exercices.name;
+     let class_exercise = this.exercices.class_exercise;
+     let expertis_exercise = this.exercices.expert_exercise;
+     let img_exercise = this.exercices.img_exercise;
+     let description_exercise = this.exercices.description_exercise; 
+     let beginer_exercise = this.exercices.beginer_exercise;
+     let inter_exercise = this.exercices.inter_exercise;
+     let expert_exercise = this.exercices.expert_exercise;
+ 
+     this.firebaseSrv.updateDocument(path, {name, 
+                                            class_exercise, 
+                                            expertis_exercise, 
+                                            img_exercise, 
+                                            description_exercise, 
+                                            beginer_exercise, 
+                                            inter_exercise})
+       .then(() => {
+         this.inputEnabled = false; // Desactiva la edición
+       })
+       .catch((error) => {
+         console.error('Error al actualizar datos antropometricos en Firebase:', error);// Error al actualizar
+       });
+   };
   }
 
 }

@@ -1,9 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { CrudService } from 'src/app/services/api/crud.service';
-import { ItemFood } from 'src/app/interfaces/itemfood';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ReactiveFormsModule } from '@angular/forms';
-import { ModalController } from '@ionic/angular';
 
 //Firebase
 import { FirebaseService } from 'src/app/services/firebase.service';
