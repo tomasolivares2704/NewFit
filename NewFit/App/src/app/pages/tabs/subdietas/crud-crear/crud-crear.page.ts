@@ -24,6 +24,7 @@ export class CrudCrearPage implements OnInit {
   foods: Foods[] = [];
   user = {} as User;
   isModalOpen = false;
+  inputEnabled: boolean;
 
   setOpen(isOpen: boolean) {
     this.isModalOpen = isOpen;
@@ -32,6 +33,27 @@ export class CrudCrearPage implements OnInit {
   setOpen2(isOpen: boolean) {
     this.isModalOpen = isOpen;
   }
+
+  setModalState(isOpen: boolean) {
+    this.isModalOpen = isOpen;
+  }
+
+  loadFoodData(food) {
+    this.foodForm.patchValue({
+      name: food.name,
+      calories: food.calories,
+      carbs: food.carbs,
+      fats: food.fats,
+      protein: food.protein
+    });
+  }
+
+  setFoodId(foodId) {
+    // Suponiendo que tengas una propiedad llamada selectedFoodId en tu clase
+    this.selectedFoodId = foodId;
+  }
+
+  selectedFoodId: string; 
 
 
   constructor(
@@ -96,6 +118,33 @@ export class CrudCrearPage implements OnInit {
         // Manejo de errores si es necesario
       });
   }
+
+  updateFood(foodId: string) {
+    // Obtén el ID del alimento seleccionado desde algún lugar
+    // let foodId = /* Obtén el ID del alimento seleccionado desde algún lugar */;
+    
+    const updatedFoodData = {
+      calories: this.foodForm.value.calories.toString(),
+      carbs: this.foodForm.value.carbs.toString(),
+      fats: this.foodForm.value.fats.toString(),
+      name: this.foodForm.value.name,
+      protein: this.foodForm.value.protein.toString()
+    };
+  
+    const path = `users/${this.user.uid}/foods/${foodId}`;
+  
+    this.firebaseSrv.updateDocument(path, updatedFoodData)
+      .then(() => {
+        console.log('Alimento actualizado correctamente.');
+        this.foodForm.reset(); // Limpiar el formulario después de actualizar el alimento
+        this.inputEnabled = false; // Desactiva la edición
+      })
+      .catch(error => {
+        console.error('Error al actualizar el alimento:', error);
+        // Manejo de errores si es necesario
+      });
+  }
+  
 
 
   
