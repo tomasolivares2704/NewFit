@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { User } from 'firebase/auth';
+import { User } from 'src/app/models/user.models';
 import { Antropometrico } from 'src/app/models/antropometricos.models';
 import { FirebaseService } from 'src/app/services/firebase.service';
 import { UtilsService } from 'src/app/services/utils.service';
-import { AddUpdateTaskComponent } from 'src/app/shared/components/add-update-task/add-update-task.component';
 
 @Component({
   selector: 'app-home',
