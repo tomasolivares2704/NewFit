@@ -8,6 +8,7 @@ import { CrudCrearPageRoutingModule } from './crud-crear-routing.module';
 
 import { CrudCrearPage } from './crud-crear.page';
 import { SharedModule } from 'src/app/shared/shared.module';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -16,7 +17,8 @@ import { SharedModule } from 'src/app/shared/shared.module';
     FormsModule,
     IonicModule,
     CrudCrearPageRoutingModule,
-    SharedModule
+    SharedModule,
+    ReactiveFormsModule
   ],
   declarations: [CrudCrearPage]
 })
