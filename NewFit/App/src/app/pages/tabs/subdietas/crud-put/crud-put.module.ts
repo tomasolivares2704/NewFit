@@ -4,20 +4,22 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { CrudCrearPageRoutingModule } from './crud-crear-routing.module';
+import { CrudPutPageRoutingModule } from './crud-put-routing.module';
 
-import { CrudCrearPage } from './crud-crear.page';
+import { CrudPutPage } from './crud-put.page';
 import { SharedModule } from 'src/app/shared/shared.module';
-
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    CrudCrearPageRoutingModule,
-    SharedModule
+    CrudPutPageRoutingModule,
+    ReactiveFormsModule,
+    SharedModule,
+    
   ],
-  declarations: [CrudCrearPage]
+  declarations: [CrudPutPage]
 })
-export class CrudCrearPageModule {}
+export class CrudPutPageModule {}

@@ -1,0 +1,76 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>crud_crear</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+
+  <ion-list>
+    <ion-item *ngFor="let food of foods">
+      <ion-label>
+        <h2>{{ food.name }}</h2>
+        <p>Calorías: {{ food.calories }}</p>
+        <p>Carbohidratos: {{ food.carbs }}</p>
+        <p>Grasas: {{ food.fats }}</p>
+        <p>Proteínas: {{ food.protein }}</p>
+
+        <!-- ACTUALIZAR ALIMENTO CON MODAL-->
+        <ion-button (click)="loadFoodData(food); selectedFoodId = food.id; setModalState(true)" color="primary">Actualizar</ion-button>
+        <ion-modal [isOpen]="isModalOpen">
+          <ng-template>
+            <ion-header>
+              <ion-toolbar>
+                <ion-title>Actualizar Comida</ion-title>
+                <ion-buttons slot="end">
+                  <ion-button (click)="setModalState(false)">Cerrar Modal</ion-button>
+                </ion-buttons>
+              </ion-toolbar>
+            </ion-header>
+            <ion-content class="ion-padding">
+
+              <!-- FORMULARIO DE EDICIÓN -->
+              <form [formGroup]="foodForm" (ngSubmit)="updateFood(food.id)">
+                <ion-item>
+                  <ion-label position="floating" for="name">Nombre:</ion-label>
+                  <ion-input type="text" formControlName="name" id="name"></ion-input>
+                </ion-item>
+                <ion-item>
+                  <ion-label for="calories">Calorías:</ion-label>
+                  <ion-input type="text" formControlName="calories" id="calories"></ion-input>
+                </ion-item>
+                <ion-item>
+                  <ion-label for="carbs">Carbohidratos:</ion-label>
+                  <ion-input type="text" formControlName="carbs" id="carbs"></ion-input>
+                </ion-item>
+                <ion-item>
+                  <ion-label for="fats">Grasas:</ion-label>
+                  <ion-input type="text" formControlName="fats" id="fats"></ion-input>
+                </ion-item>
+                <ion-item>
+                  <ion-label for="protein">Proteínas:</ion-label>
+                  <ion-input type="text" formControlName="protein" id="protein"></ion-input>
+                </ion-item>
+                <ion-button expand="full" type="submit" [disabled]="foodForm.invalid">Actualizar Alimento</ion-button>
+              </form>
+
+            </ion-content>
+          </ng-template>
+        </ion-modal>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+
+  
+  <ion-button expand="block" color="warning" [routerLink]="['/tabs/subdietas/crud-put']">Crear Nuevo Alimentop</ion-button>
+
+ 
+</ion-content>
+
+<!-- FOOTER // TABS -->
+<ion-footer>
+  <ion-toolbar>
+    <app-barramenu></app-barramenu>
+  </ion-toolbar>
+</ion-footer>
+

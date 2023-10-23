@@ -13,8 +13,12 @@ const routes: Routes = [
     loadChildren: () => import('./proteina/proteina.module').then( m => m.ProteinaPageModule)
   },
   {
-    path: 'crud-crear',
-    loadChildren: () => import('./crud-crear/crud-crear.module').then( m => m.CrudCrearPageModule)
+    path: 'crud-list',
+    loadChildren: () => import('./crud-list/crud-list.module').then( m => m.CrudListPageModule)
+  },
+  {
+    path: 'crud-put',
+    loadChildren: () => import('./crud-put/crud-put.module').then( m => m.CrudPutPageModule)
   }
 ];
 
