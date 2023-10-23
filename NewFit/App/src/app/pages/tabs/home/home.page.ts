@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from 'firebase/auth';
-import { Task } from 'src/app/models/task.models';
+import { Antropometrico } from 'src/app/models/antropometricos.models';
 import { FirebaseService } from 'src/app/services/firebase.service';
 import { UtilsService } from 'src/app/services/utils.service';
 import { AddUpdateTaskComponent } from 'src/app/shared/components/add-update-task/add-update-task.component';
@@ -12,12 +12,12 @@ import { AddUpdateTaskComponent } from 'src/app/shared/components/add-update-tas
 })
 export class HomePage implements OnInit {
 
-  tasks: Task[] = [];
+  antropometrico = {} as Antropometrico;
   user = {} as User;
   loading: boolean = false;
 
   constructor(
-    private firebaseSvc: FirebaseService,
+    private firebaseSrv: FirebaseService,
     private utilsSvc: UtilsService
   ) { }
 
@@ -25,7 +25,7 @@ export class HomePage implements OnInit {
   }
 
   ionViewWillEnter() {
-    this.getTasks()
+    this.getUserInfo()
     this.getUser()
   }
 
@@ -33,90 +33,16 @@ export class HomePage implements OnInit {
     return this.user = this.utilsSvc.getElementInLocalStorage('user');
   }
 
-  getPercentage(task: Task){
-    return this.utilsSvc.getPercentage(task);
-  }
+  getUserInfo() {
+    let path = `user/${this.user.uid}`;
+    let sub = this.firebaseSrv.getSubcollection(path, 'antropometrico').subscribe({
 
-  async addOrUpdateTask(task?: Task){
-    let res = await this.utilsSvc.presentModal({
-      component: AddUpdateTaskComponent,
-      componentProps: { task },
-      cssClass: 'add-update-modal'
-    });
-
-    if(res && res.success) {
-      this.getTasks();
-    }
-  }
-
-  getTasks(){
-    let user: User = this.utilsSvc.getElementInLocalStorage('user')
-    let path = `users/${user.uid}`;
-    this.loading = true;
-
-    let sub = this.firebaseSvc.getSubcollection(path, 'tasks').subscribe({
-      next: (res: Task[]) => {
+      next: (res: Antropometrico[]) => {
+        this.antropometrico = res[0];
         console.log(res);
-        this.tasks = res
-        sub.unsubscribe()
-        this.loading = false;
+        sub.unsubscribe();
       }
     })
   }
-
-  deleteTask(task: Task){
-    let path = `users/${this.user.uid}/tasks/${task.id}`;
-
-    this.utilsSvc.presentLoading();
-
-    this.firebaseSvc.deleteDocument(path).then(res => {
-
-    this.utilsSvc.presentToast({
-      message: 'Tarea eliminada exitosamente',
-      color: 'success',
-      icon: 'checkmark-circle-outline',
-      duration: 1500
-    });
-
-    this.getTasks();
-    this.utilsSvc.dismissLoading();
-
-    }, error => {
-      this.utilsSvc.presentToast({
-        message: error,
-        color: 'warning',
-        icon: 'alert-circle-outline',
-        duration: 5000
-      });
-  
-      this.utilsSvc.dismissLoading();
-
-    });
-  }
-
-  confirmDeleteTask(task: Task){ {
-    this.utilsSvc.presentAlert({
-      header: 'Eliminar tarea',
-      message: '¿Quieres eliminar esta tarea?',
-      mode: 'ios',
-      buttons: [
-        {
-          text: 'Cancelar',
-          role: 'cancel',
-        }, {
-          text: 'Si, eliminar',
-          handler: () => {
-            this.deleteTask(task);
-          }
-        }]
-      });
-    }
-  }
-
-
-  
-
-
-
 
 }
