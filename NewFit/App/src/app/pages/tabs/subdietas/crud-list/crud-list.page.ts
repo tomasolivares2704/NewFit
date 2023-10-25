@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 //Firebase
@@ -21,34 +21,40 @@ export class CrudListPage implements OnInit {
   user = {} as User;
   isModalOpen = false;
   inputEnabled: boolean;
-
+  foodId: string;
 
   setModalState(isOpen: boolean) {
     this.isModalOpen = isOpen;
   }
 
   //Funcion para Cargar los datos al formulario FoodForm
-  loadFoodData(food: any) {
-    //Metodo para Actualizar Valores del Formulario
-    this.foodForm.patchValue({
-      name: food.name,
-      calories: food.calories,
-      carbs: food.carbs,
-      fats: food.fats,
-      protein: food.protein,
-      img: food.img,
-    });
-    console.log("ID del alimento seleccionado:", food.id);
+  loadFoodData(id: string) {
+    // Busca el alimento correspondiente por su ID
+    const food = this.foods.find(f => f.id === id);
+    if (food) {
+      // Actualiza el formulario con los datos del alimento
+      this.foodForm.patchValue({
+        name: food.name,
+        calories: food.calories,
+        carbs: food.carbs,
+        fats: food.fats,
+        protein: food.protein,
+        img: food.img,
+      });
+      this.foodId = id; // Almacena el ID del alimento
+      console.log("ID del alimento seleccionado:", id);
+    }
   }
+  
   
 
   //setFoodId(foodId) {
     //this.selectedFoodId = foodId;
   //}
 
-  selectedFoodId: string;
+  //selectedFoodId: string;
 
-  constructor(private firebaseSrv: FirebaseService,private utilsSvc: UtilsService,private formBuilder: FormBuilder) { }
+  constructor(private firebaseSrv: FirebaseService,private utilsSvc: UtilsService,private formBuilder: FormBuilder, private router: Router) { }
 
   ngOnInit() {
     this.getUser();
@@ -70,7 +76,7 @@ export class CrudListPage implements OnInit {
 
   //Funcion para Obtener al Usuario
   getUser() {
-    return this.user = this.utilsSvc.getElementInLocalStorage('user');
+    this.user = this.utilsSvc.getElementInLocalStorage('user');
   }
 
   //Funcion para Obtener la Lista de Foods(Alimentos)
@@ -91,11 +97,10 @@ export class CrudListPage implements OnInit {
   }
   
     // Metodo para Actualizar Aliemento (Food) //
-    updateFood(id: string) {
-      console.log("ID del alimento en la función updateFood:", id);
-      console.log("selectedFoodId:", this.selectedFoodId);
-      
-      // Crea Objeto 
+    updateFood() {
+      console.log("ID del alimento en la función updateFood:", this.foodId);
+    
+      // Crea Objeto
       const updatedFoodData = {
         calories: this.foodForm.value.calories.toString(),
         carbs: this.foodForm.value.carbs.toString(),
@@ -103,11 +108,11 @@ export class CrudListPage implements OnInit {
         name: this.foodForm.value.name.toString(),
         protein: this.foodForm.value.protein.toString(),
         img: this.foodForm.value.img.toString(),
-
       };
-  
-    // Construye la Ruta
-    const path = `user/${this.user.uid}/foods/${id}`;
+    
+      // Construye la Ruta
+      const path = `user/${this.user.uid}/foods/${this.foodId}`;
+      console.log(path);
   
     // Metodo UpDate en la Ruta
     this.firebaseSrv.updateDocument(path, updatedFoodData)
