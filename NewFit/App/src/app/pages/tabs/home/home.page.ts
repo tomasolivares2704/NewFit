@@ -13,19 +13,20 @@ export class HomePage implements OnInit {
 
   antropometrico = {} as Antropometrico;
   user = {} as User;
-  loading: boolean = false;
+  loading = false;
 
   constructor(
     private firebaseSrv: FirebaseService,
-    private utilsSvc: UtilsService
+    private utilsSvc: UtilsService,
   ) { }
 
   ngOnInit() {
   }
 
   ionViewWillEnter() {
-    this.getUserInfo()
-    this.getUser()
+    this.getUserInfo();
+    this.getUser();
+    this.registroLogin();
   }
 
   getUser() {
@@ -43,5 +44,45 @@ export class HomePage implements OnInit {
       }
     })
   }
+
+  registroLogin() {
+    if (this.user.uid) {
+      // Comprueba si ya se ha registrado el inicio de sesión en el almacenamiento local
+      if (!localStorage.getItem('inicioSesionRegistrado')) {
+        let timestamp = new Date();
+
+      // Formatea la fecha en el formato que desees (por ejemplo, 'dd/mm/yyyy')
+      let fechaFormateada = timestamp.toLocaleDateString('es-ES', {
+        day: '2-digit',
+        month: '2-digit',
+        year: 'numeric',
+        hour: '2-digit',
+        minute: '2-digit'
+      });
+
+      let loginData = {
+        userId: this.user.uid,
+        date: fechaFormateada // Aquí se almacena la fecha formateada
+      };
+  
+        const path = `logs/${"registros"}`;
+  
+        this.firebaseSrv.addToSubcollection(path, 'registros', loginData)
+          .then(() => {
+            console.log('Registro de inicio de sesión exitoso.');
+            // Marca el inicio de sesión como registrado en el almacenamiento local
+            localStorage.setItem('inicioSesionRegistrado', 'true');
+          })
+          .catch(error => {
+            console.error('Error al registrar el inicio de sesión:', error);
+          });
+      } else {
+        console.log('El inicio de sesión ya ha sido registrado anteriormente.');
+      }
+    } else {
+      console.log('Usuario no válido o falta el UID.');
+    }
+  }
+  
 
 }

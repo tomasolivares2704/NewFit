@@ -34,6 +34,8 @@ export class FirebaseService {
     return this.auth.authState;
   }
 
+
+
   async deleteUser(): Promise<void> {
     try {
       const user = await this.auth.currentUser;
@@ -55,6 +57,7 @@ export class FirebaseService {
     await this.auth.signOut();
     this.utilsSvc.routerLink('/auth');
     this.utilsSvc.removeElementInLocalStorage('user');
+    this.utilsSvc.removeElementInLocalStorage('inicioSesionRegistrado');
   }
 
   // Firebase (base de datos)
@@ -73,4 +76,5 @@ export class FirebaseService {
   deleteDocument(path: string){
     return this.db.doc(path).delete();
   }
+
 }

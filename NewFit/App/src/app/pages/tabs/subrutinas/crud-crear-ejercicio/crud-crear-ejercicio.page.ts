@@ -5,7 +5,7 @@ import { FirebaseService } from 'src/app/services/firebase.service';
 import { UtilsService } from 'src/app/services/utils.service';
 
 import { User } from 'src/app/models/user.models';
-import { Exercices } from 'src/app/models/exercices.models';
+import { exercices } from 'src/app/models/exercices.models';
 
 
 @Component({
@@ -18,7 +18,7 @@ export class CrudCrearEjercicioPage implements OnInit {
   exerciseForm: FormGroup;
 
   user = {} as User;
-  exercices = {} as Exercices;
+  exercices = {} as exercices;
   inputEnabled: boolean;
 
   constructor(
@@ -49,8 +49,8 @@ export class CrudCrearEjercicioPage implements OnInit {
   getExercices(){
     let user: User = this.utilsSvc.getElementInLocalStorage('user')
     let path = `user/${user.uid}`;
-    let sub = this.firebaseSrv.getSubcollection(path, 'exercises').subscribe({
-      next: (res: Exercices[]) => {
+    let sub = this.firebaseSrv.getSubcollection(path, 'exercices').subscribe({
+      next: (res: exercices[]) => {
         console.log(res);
         this.exercices = res[0]
         sub.unsubscribe()
@@ -62,7 +62,7 @@ export class CrudCrearEjercicioPage implements OnInit {
   createNewExercice(){
     let path = `user/${this.user.uid}`;
 
-    this.firebaseSrv.addToSubcollection(path, 'exercises', this.form.value)
+    this.firebaseSrv.addToSubcollection(path, 'exercices', this.form.value)
     .then(() => {
       console.log('Nuevo ejercicio añadido correctamente.');
       this.exerciseForm.reset(); // Limpiar el formulario después de agregar el alimento
@@ -94,7 +94,8 @@ export class CrudCrearEjercicioPage implements OnInit {
                                             img_exercise, 
                                             description_exercise, 
                                             beginer_exercise, 
-                                            inter_exercise})
+                                            inter_exercise,
+                                            expert_exercise})
        .then(() => {
          this.inputEnabled = false; // Desactiva la edición
        })

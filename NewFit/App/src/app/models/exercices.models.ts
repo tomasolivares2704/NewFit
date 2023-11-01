@@ -1,4 +1,4 @@
-export interface Exercices {
+export interface exercices {
     id: string;
     name: string;
     class_exercise: number;

@@ -40,7 +40,6 @@ export class ProfilePage implements OnInit {
   ionViewWillEnter() {
     this.getUser();
     this.getUserInfo();
-    this.getFoods();
   }
 
   getUser() {
@@ -119,19 +118,6 @@ export class ProfilePage implements OnInit {
          console.error('Error al actualizar datos antropometricos en Firebase:', error);// Error al actualizar
        });
    };
-  }
-
-  getFoods(){
-    let user: User = this.utilsSvc.getElementInLocalStorage('user')
-    let path = `users/${user.uid}`;
-    let sub = this.firebaseSrv.getSubcollection(path, 'foods').subscribe({
-      next: (res: Foods[]) => {
-        console.log(res);
-        this.foods = res
-        sub.unsubscribe()
-        
-      }
-    })
   }
 
   enableInput() {

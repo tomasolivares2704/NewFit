@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { UtilsService } from 'src/app/services/utils.service';
 import { FirebaseService } from 'src/app/services/firebase.service';
 import { User } from 'src/app/models/user.models';
+import { UserSession } from 'src/app/models/userSession.models';
 
 @Component({
   selector: 'app-auth',
@@ -11,6 +12,9 @@ import { User } from 'src/app/models/user.models';
 })
 export class AuthPage implements OnInit {
 
+  user = {} as User;
+  Session = {} as UserSession;
+
   form = new FormGroup({
     email: new FormControl('', [Validators.required, Validators.email]),
     password: new FormControl('', [Validators.required]),
@@ -18,7 +22,7 @@ export class AuthPage implements OnInit {
 
   constructor(
     private firebaseSvc: FirebaseService,
-    private utilsSvc: UtilsService
+    private utilsSvc: UtilsService,
   ) { }
 
   ngOnInit() {
@@ -58,5 +62,4 @@ export class AuthPage implements OnInit {
       });
     }
   }
-
 }

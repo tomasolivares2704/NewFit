@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators, FormArray} from '@angular/forms';
+import { FormControl, FormGroup, Validators} from '@angular/forms';
 import { UtilsService } from 'src/app/services/utils.service';
 import { FirebaseService } from 'src/app/services/firebase.service';
 import { User } from 'firebase/auth';
@@ -15,10 +15,6 @@ export class AntropometricoPage implements OnInit {
 
   user = {} as User;
   antropometrico = {} as Antropometrico;
-
-  edades: number[] = [];
-  alturas: number[] = [];
-  sexo: string[] = [];
 
   constructor(
     private firebaseSvc: FirebaseService,
@@ -46,7 +42,7 @@ export class AntropometricoPage implements OnInit {
 
         if (this.user && this.user.uid) {
           // Define la ruta a la subcolección "Antropometrico" del usuario
-          const antropometricoCollectionPath = `user/${this.user.uid}`;
+          let antropometricoCollectionPath = `user/${this.user.uid}`;
 
          this.firebaseSvc.addToSubcollection(antropometricoCollectionPath, 'antropometrico', this.form.value).then(
             (res) => {

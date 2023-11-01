@@ -15,6 +15,10 @@ const routes: Routes = [
   {
     path: 'crud-crear-ejercicio',
     loadChildren: () => import('./crud-crear-ejercicio/crud-crear-ejercicio.module').then( m => m.CrudCrearEjercicioPageModule)
+  },
+  {
+    path: 'crud-ver-ejercicio',
+    loadChildren: () => import('./crud-ver-ejercicios/crud-ver-ejercicios.module').then( m => m.CrudVerEjerciciosPageModule)
   }
 ];
 
