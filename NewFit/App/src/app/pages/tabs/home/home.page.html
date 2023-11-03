@@ -1,7 +1,24 @@
+<!--'''
+El código proporciona una vista de contenido para una aplicación móvil utilizando el framework Ionic. 
+La vista incluye una tarjeta de perfil de usuario, dos tarjetas para diferentes funcionalidades, una tarjeta de estadísticas de 
+entrenamiento y una barra de progreso para el progreso diario de metas.
 
-<ion-content>
-  <br><br>
-  <!-- Primera columna con perfil -->
+Análisis de código:
+### Entradas
+- No hay entradas específicas para este código. Utiliza estilos en línea para personalizar la apariencia de los elementos.
+___
+### Flujo
+1. Se define un contenido de ion para la vista.
+2. Se crea una tarjeta de perfil de usuario que muestra el nombre y el correo electrónico del usuario.
+3. Se crean dos tarjetas para diferentes funcionalidades, una para dietas y otra para rutinas de entrenamiento.
+4. Se crea una tarjeta de estadísticas de entrenamiento que muestra información sobre el rendimiento del usuario.
+5. Se crea una barra de progreso para mostrar el progreso diario de las metas del usuario.
+___
+### Salidas
+- No hay salidas específicas para este código.
+'''-->
+<ion-content style="margin-top: 20px;">
+  <!-- Tarjeta de perfil de usuario -->
   <ion-card>
     <ion-card-content [routerLink]="['/tabs/profile']">
       <ion-grid>
@@ -11,9 +28,7 @@
             <h2>{{ user.name }}</h2>
             <p style="font-size: 10px;">{{ user.email }}</p>
           </ion-col>
-          <ion-col size="1"></ion-col>
           <ion-col size="5" style="text-align: left;">
-            <!-- Se utiliza la información del LS para pintarla en el card del perfil -->
             <p style="color: #ceff25;">Objetivo:</p>
             <p>{{antropometrico.objetivo}}</p>
             <br>
@@ -25,21 +40,20 @@
     </ion-card-content>
   </ion-card>
 
-  <!-- Segunda fila con dos columnas -->
+  <!-- Dos tarjetas para diferentes funcionalidades -->
   <ion-grid>
     <ion-row>
-      <!-- Columna 1 - Comida -->
+      <!-- Tarjeta 1 - Dietas -->
       <ion-col size="6">
         <ion-card class="ion-card1">
-          <ion-card-content  [routerLink]="['/tabs/subdietas']" >
+          <ion-card-content [routerLink]="['/tabs/subdietas']">
             <ion-icon name="fast-food-outline"></ion-icon>
-            
             <h3 class="ion-content1">DIETAS</h3>
           </ion-card-content>
         </ion-card>
       </ion-col>
 
-      <!-- Columna 2 - Training -->
+      <!-- Tarjeta 2 - Rutinas de entrenamiento -->
       <ion-col size="6">
         <ion-card>
           <ion-card-content [routerLink]="['/tabs/subrutinas']">
@@ -51,31 +65,31 @@
     </ion-row>
   </ion-grid>
 
-  <!-- Tercera tarjeta - Estadísticas de Entrenamiento -->
-<ion-card class="ion-card1">
-  <ion-card-content >
-    <ion-grid>
-      <ion-row>
-        <ion-col size="5">
-          <ion-icon name="barbell-outline"></ion-icon>
-          <H3>ESTADÍSTICAS</H3>
-        </ion-col>
-        <ion-col size="1"> </ion-col>
-        <ion-col size="6"  style="text-align: left; font-size: 12px;">
-          <p style="font-size: 12px;" class="ion-content1">EJERCICIOS REALIZADOS: 45</p>
-          <p style="font-size: 12px;" class="ion-content1">CALORÍAS QUEMADAS: 350</p>
-          <p style="font-size: 12px;" class="ion-content1">ÚLTIMO ENTRENAMIENTO: 30 MIN</p>
-        </ion-col>
-      </ion-row>
-    </ion-grid>
-  </ion-card-content>
-</ion-card>
-<br>
-  <!-- Última fila con progreso diario de metas -->
-  <div class="progress-container" style="width: 90%; margin: auto;">
-    <ion-label class="progress-label">PROGRESO DIARIO DE METAS</ion-label>
-    <ion-progress-bar class="progress-bar" value="0.75"></ion-progress-bar>
-    <ion-label class="progress-value">75%</ion-label>
-  </div>
+  <!-- Tarjeta de estadísticas de entrenamiento -->
+  <ion-card class="ion-card1">
+    <ion-card-content>
+      <ion-grid>
+        <ion-row>
+          <ion-col size="5">
+            <ion-icon name="barbell-outline"></ion-icon>
+            <h3>ESTADÍSTICAS</h3>
+          </ion-col>
+          <ion-col size="6" style="text-align: left; font-size: 12px;">
+            <p style="font-size: 12px;" class="ion-content1">EJERCICIOS REALIZADOS: 45</p>
+            <p style="font-size: 12px;" class="ion-content1">CALORÍAS QUEMADAS: 350</p>
+            <p style="font-size: 12px;" class="ion-content1">ÚLTIMO ENTRENAMIENTO: 30 MIN</p>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card-content>
+  </ion-card>
+  <br>
 
+  <!-- Barra de progreso para el progreso diario de metas -->
+  <div class="progress-container" style="width: 90%; margin: auto;">
+    <h5 class="progress-label">PROGRESO DIARIO DE METAS</h5>
+    <ion-progress-bar class="progress-bar" value="0.75"></ion-progress-bar>
+    <p class="progress-value">75%</p>
+  </div>
 </ion-content>
+'''
