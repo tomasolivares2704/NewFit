@@ -1,8 +1,8 @@
 export interface exercices {
     id: string;
     name: string;
-    class_exercise: number;
-    expertis_exercise: number;
+    class_exercise: string;
+    expertis_exercise: string;
     img_exercise: string;
     description_exercise: string;
     beginer_exercise: string;

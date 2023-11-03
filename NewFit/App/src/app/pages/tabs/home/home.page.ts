@@ -4,6 +4,7 @@ import { Antropometrico } from 'src/app/models/antropometricos.models';
 import { FirebaseService } from 'src/app/services/firebase.service';
 import { UtilsService } from 'src/app/services/utils.service';
 
+
 /**
  * Componente de Angular para mostrar la página de inicio de sesión de un usuario.
  */
@@ -101,4 +102,6 @@ export class HomePage implements OnInit {
       console.log('Usuario no válido o falta el UID.');
     }
   }
+
+  
 }
