@@ -17,6 +17,22 @@ ___
 ### Salidas
 - No hay salidas específicas para este código.
 '''-->
+
+<!--- <ion-header >
+  <ion-toolbar>
+    <ion-title>
+      HOME
+    </ion-title>
+    <ion-buttons slot="end">
+      <ion-button routerLink="/tabs/subdietas/crud-list">
+        <ion-icon name="add"></ion-icon>
+        <ion-badge *ngIf="alimentosCreados > 0">{{ alimentosCreados }}</ion-badge>
+      </ion-button>
+      
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header> -->
+
 <ion-content style="margin-top: 20px;">
   <!-- Tarjeta de perfil de usuario -->
   <ion-card>
@@ -92,4 +108,3 @@ ___
     <p class="progress-value">75%</p>
   </div>
 </ion-content>
-'''

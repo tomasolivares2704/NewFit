@@ -6,6 +6,8 @@ import { UtilsService } from 'src/app/services/utils.service';
 
 import { User } from 'src/app/models/user.models';
 import { Foods } from 'src/app/models/food.models';
+import { AlertController } from '@ionic/angular';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-crud-put',
@@ -21,10 +23,14 @@ export class CrudPutPage implements OnInit {
   user = {} as User;
   inputEnabled: boolean;
 
+  alimentosCreados: number = 0;
+
   constructor(
     private firebaseSrv: FirebaseService,
     private utilsSvc: UtilsService,
     private formBuilder: FormBuilder,
+    private alertController: AlertController,
+    private router: Router,
   ) { }
 
   ngOnInit() {
@@ -60,8 +66,7 @@ export class CrudPutPage implements OnInit {
       }
     })
   }
-
-  createNewFood() {
+  async createNewFood() {
     const newFoodData = {
       calories: this.foodForm.value.calories.toString(),
       carbs: this.foodForm.value.carbs.toString(),
@@ -70,18 +75,40 @@ export class CrudPutPage implements OnInit {
       protein: this.foodForm.value.protein.toString(),
       img: this.foodForm.value.img.toString(),
     };
-
+  
     const path = `user/${this.user.uid}`;
-
-    this.firebaseSrv.addToSubcollection(path, 'foods', newFoodData)
-      .then(() => {
-        console.log('Nuevo alimento añadido correctamente.');
-        this.foodForm.reset(); // Limpiar el formulario después de agregar el alimento
-      })
-      .catch(error => {
-        console.error('Error al añadir el nuevo alimento:', error);
-        // Manejo de errores si es necesario
+  
+    try {
+      await this.firebaseSrv.addToSubcollection(path, 'foods', newFoodData);
+      console.log('Nuevo alimento añadido correctamente.');
+      this.incrementarAlimentosCreados(); //Incrementa el contador
+      this.foodForm.reset(); // Limpiar el formulario después de agregar el alimento
+      
+  
+      // Mostrar una alerta que indica que se ha agregado el nuevo alimento
+      const alert = await this.alertController.create({
+        header: 'Nuevo alimento',
+        message: 'Se ha agregado el nuevo alimento correctamente.',
+        buttons: [
+          {
+            text: 'Aceptar',
+            handler: () => {
+              // Redirigir a otra vista después de hacer clic en 'Aceptar'
+              this.router.navigate(['/tabs/subdietas/crud-list']); // Reemplaza 'otra-ruta' con la ruta a la que deseas redirigir
+            }
+          }
+        ],
       });
+  
+      await alert.present();
+    } catch (error) {
+      console.error('Error al añadir el nuevo alimento:', error);
+      // Manejo de errores si es necesario
+    }
+  }
+  // Método para incrementar el contador de alimentos creados
+  incrementarAlimentosCreados() {
+    this.alimentosCreados++;
   }
 
   updateFood(foodId: string) {

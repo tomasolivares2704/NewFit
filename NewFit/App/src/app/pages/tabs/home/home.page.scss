@@ -24,3 +24,9 @@ ion-card:hover{
 .empty {
     padding-top: 15vh;
 }
+
+/* Estilo para el encabezado */
+ion-header {
+    --ion-background-color: #1c2303;
+    color: #dac5c5;
+  }

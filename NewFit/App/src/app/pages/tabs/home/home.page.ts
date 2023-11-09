@@ -3,6 +3,7 @@ import { User } from 'src/app/models/user.models';
 import { Antropometrico } from 'src/app/models/antropometricos.models';
 import { FirebaseService } from 'src/app/services/firebase.service';
 import { UtilsService } from 'src/app/services/utils.service';
+import { AlertController } from '@ionic/angular';
 
 
 /**
@@ -19,9 +20,12 @@ export class HomePage implements OnInit {
   user = {} as User;
   loading = false;
 
+  alimentosCreados: number = 0; // Nuevo contador de alimentos creados
+
   constructor(
     private firebaseSrv: FirebaseService,
     private utilsSvc: UtilsService,
+    private alertController: AlertController,
   ) { }
 
   ngOnInit() {
