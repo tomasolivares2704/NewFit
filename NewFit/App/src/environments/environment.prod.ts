@@ -1,12 +1,12 @@
 export const environment = {
   production: true,
   firebaseConfig: {
-    apiKey: "AIzaSyBPiTG2WeBUHhskV3h6b0XsJ8nwNJDW7zg",
-    authDomain: "fitnutrition-93961.firebaseapp.com",
-    projectId: "fitnutrition-93961",
-    storageBucket: "fitnutrition-93961.appspot.com",
-    messagingSenderId: "441828546460",
-    appId: "1:441828546460:web:c6b164a9d9cec32e821a59",
-    measurementId: "G-MPDQPJL3NG"
+    apiKey: "AIzaSyBqBNlm_fCJSEumYP9lpU2NIurumeBulNg",
+    authDomain: "fitnutritionapp.firebaseapp.com",
+    projectId: "fitnutritionapp",
+    storageBucket: "fitnutritionapp.appspot.com",
+    messagingSenderId: "1011117104302",
+    appId: "1:1011117104302:web:b644692473709959d3613f",
+    measurementId: "G-C450PXVFPX"
   }
 };
