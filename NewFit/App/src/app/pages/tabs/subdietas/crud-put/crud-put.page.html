@@ -1,8 +1,5 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>crud-put</ion-title>
-  </ion-toolbar>
-</ion-header>
+<app-header backButton="../"></app-header>
+
 
 <ion-content [fullscreen]="true">
   <ion-header collapse="condense">
@@ -11,35 +8,38 @@
     </ion-toolbar>
   </ion-header>
 
-  <form [formGroup]="foodForm" (ngSubmit)="createNewFood()">
-    <ion-item>
-      <ion-label position="floating" for="name">Nombre:</ion-label>
-      <ion-input type="text" formControlName="name" id="name"></ion-input>
-    </ion-item>
+  <ion-card>
 
-    <ion-item>
-      <ion-label for="calories">Calorías:</ion-label>
-      <ion-input type="text" formControlName="calories" id="calories"></ion-input>
-    </ion-item>
+    <form [formGroup]="foodForm" (ngSubmit)="createNewFood()">
+      <ion-item>
+        <ion-label position="floating" for="name">Nombre:</ion-label>
+        <ion-input type="text" formControlName="name" id="name"></ion-input>
+      </ion-item>
 
-    <ion-item>
-      <ion-label for="carbs">Carbohidratos:</ion-label>
-      <ion-input type="text" formControlName="carbs" id="carbs"></ion-input>
-    </ion-item>
+      <ion-item>
+        <ion-label for="calories">Calorías:</ion-label>
+        <ion-input type="text" formControlName="calories" id="calories"></ion-input>
+      </ion-item>
 
-    <ion-item>
-      <ion-label for="fats">Grasas:</ion-label>
-      <ion-input type="text" formControlName="fats" id="fats"></ion-input>
-    </ion-item>
-    
-    <ion-item>
-      <ion-label for="protein">Proteínas:</ion-label>
-      <ion-input type="text" formControlName="protein" id="protein"></ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-label for="img">Imagen:</ion-label>
-      <ion-input type="text" formControlName="img" id="img"></ion-input>
-    </ion-item>
-    <ion-button expand="full" type="submit" [disabled]="foodForm.invalid">Crear Alimento</ion-button>
-  </form>
+      <ion-item>
+        <ion-label for="carbs">Carbohidratos:</ion-label>
+        <ion-input type="text" formControlName="carbs" id="carbs"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label for="fats">Grasas:</ion-label>
+        <ion-input type="text" formControlName="fats" id="fats"></ion-input>
+      </ion-item>
+      
+      <ion-item>
+        <ion-label for="protein">Proteínas:</ion-label>
+        <ion-input type="text" formControlName="protein" id="protein"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label for="img">Imagen:</ion-label>
+        <ion-input type="text" formControlName="img" id="img"></ion-input>
+      </ion-item>
+      <ion-button expand="full" type="submit" [disabled]="foodForm.invalid">Crear Alimento</ion-button>
+    </form>
+  </ion-card>
 </ion-content>
