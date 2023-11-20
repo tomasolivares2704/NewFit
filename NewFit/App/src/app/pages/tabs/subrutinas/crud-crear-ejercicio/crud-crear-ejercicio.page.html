@@ -43,7 +43,7 @@
         <div *ngIf="form.controls.inter_exercise.errors?.['required']">Ingresa una progresión para intermedios</div>
       </div>
 
-      <app-custom-input [control]="form.controls.expert_exercise" type="string" label="Nivel de Actividad Física"></app-custom-input>
+      <app-custom-input [control]="form.controls.expert_exercise" type="string" label="Progresión avanzada"></app-custom-input>
       <div class="validators" *ngIf="form.controls.expert_exercise.errors && form.controls.expert_exercise.dirty">
         <div *ngIf="form.controls.expert_exercise.errors?.['required']">Ingresa el ejercicio para avanzados</div>
       </div>

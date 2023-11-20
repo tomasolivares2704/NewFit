@@ -21,6 +21,7 @@ export class UtilsService {
 
   async presentLoading(opts?: LoadingOptions) {
     const loading = await this.loadingController.create(opts);
+    cssClass: 'ion-loading custom-loading';
     await loading.present();
   }
 

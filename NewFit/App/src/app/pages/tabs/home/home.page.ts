@@ -4,6 +4,10 @@ import { Antropometrico } from 'src/app/models/antropometricos.models';
 import { FirebaseService } from 'src/app/services/firebase.service';
 import { UtilsService } from 'src/app/services/utils.service';
 
+//Device Motion
+import { PluginListenerHandle } from '@capacitor/core';
+import { Motion } from '@capacitor/motion';
+
 
 /**
  * Componente de Angular para mostrar la página de inicio de sesión de un usuario.
@@ -18,6 +22,9 @@ export class HomePage implements OnInit {
   antropometrico = {} as Antropometrico;
   user = {} as User;
   loading = false;
+
+  accelHandler: PluginListenerHandle;
+
 
   constructor(
     private firebaseSrv: FirebaseService,

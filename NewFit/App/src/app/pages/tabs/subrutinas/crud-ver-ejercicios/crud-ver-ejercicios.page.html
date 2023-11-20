@@ -4,39 +4,33 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-
+<ion-content>
   <ion-grid>
     <ion-row>
       <ion-list>
+        <ion-item *ngFor="let exercice of exercices">
 
-        <ion-item *ngFor="let exercices of exercices">
-      
-          <ion-col size="4">
-            <img style="width: 250px; height: auto;" src="{{ exercices.img_exercise }}" alt="{{ exercices.img_exercise }} Imagen">
-          </ion-col>
           <ion-col size="2">
+            <img style="width: 250px; height: auto;" src="{{ exercice.img_exercise }}" alt="{{ exercice.img_exercise }} Imagen">
           </ion-col>
-          
+
+          <ion-col size="2"></ion-col>
+
           <ion-label>
-            <h2>{{ exercices.name }}</h2>
-            <input type="hidden" id="foodId" name="foodId" value="{{exercices.id}}">
-            <p>class exercise: {{ exercices.class_exercise }}</p>
-            <p>expertis exercise: {{ exercices.expertis_exercise }}</p>
-            <p>description exercise: {{ exercices.description_exercise }}</p>
-            <p>beginer exercise: {{ exercices.beginer_exercise }}</p>
-            <p>inter exercise: {{ exercices.inter_exercise }}</p>
-            <p>expert exercise: {{ exercices.expert_exercise }}</p>
-            <!-- ACTUALIZAR ALIMENTO CON MODAL-->
-            <ion-button (click)="loadExerciceData(exercices.id); setModalState(true)" color="primary">Actualizar</ion-button>
+            <h2>{{ exercice.name }}</h2>
+            <p>class exercise: {{ exercice.class_exercise }}</p>
+            <p>expertis exercise: {{ exercice.expertis_exercise }}</p>
+            <p>description exercise: {{ exercice.description_exercise }}</p>
+            <p>beginer exercise: {{ exercice.beginer_exercise }}</p>
+            <p>inter exercise: {{ exercice.inter_exercise }}</p>
+            <p>expert exercise: {{ exercice.expert_exercise }}</p>
+            <!--ACTUALIZAR EJERCICIO-->
+            <ion-button (click)="loadExerciceData(exercice.id); setModalState(true)">Actualizar</ion-button>
           </ion-label>
 
         </ion-item>
-
       </ion-list>
-
     </ion-row>
-
   </ion-grid>
 
   <ion-modal [isOpen]="isModalOpen">
@@ -51,49 +45,54 @@
       </ion-header>
       <ion-content class="ion-padding">
 
-        <!-- FORMULARIO DE EDICIÓN -->
-        <form [formGroup]="form" (ngSubmit)="updateExercice()">
+        <!--FORMULARIO DE EDICIÓN-->
+        <form [formGroup]="exerciceForm" (ngSubmit)="updateExercice()">
 
           <ion-item>
-            <!-- <p>{{foodId}}</p> -->
             <ion-label position="floating" for="name">Nombre:</ion-label>
             <ion-input type="text" formControlName="name" id="name"></ion-input>
           </ion-item>
-          <ion-item>
-            <ion-label for="img">Imagen:</ion-label>
-            <ion-input type="text" formControlName="img" id="img"></ion-input>
-          </ion-item>
-          <ion-item>
-            <ion-label for="calories">Calorías:</ion-label>
-            <ion-input type="text" formControlName="calories" id="calories"></ion-input>
-          </ion-item>
-          <ion-item>
-            <ion-label for="carbs">Carbohidratos:</ion-label>
-            <ion-input type="text" formControlName="carbs" id="carbs"></ion-input>
-          </ion-item>
-          <ion-item>
-            <ion-label for="fats">Grasas:</ion-label>
-            <ion-input type="text" formControlName="fats" id="fats"></ion-input>
-          </ion-item>
-          <ion-item>
-            <ion-label for="protein">Proteínas:</ion-label>
-            <ion-input type="text" formControlName="protein" id="protein"></ion-input>
-          </ion-item>
-          
-          <ion-button expand="full" type="submit" [disabled]="form.invalid">Actualizar Ejercicio</ion-button>
-        </form>
 
+          <ion-item>
+            <ion-label for="class_exercise">Clase de Ejercicio</ion-label>
+            <ion-input type="text" formControlName="class_exercise" id="class_exercise"></ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-label for="expertis_exercise">Expertís de Ejercicio</ion-label>
+            <ion-input type="text" formControlName="expertis_exercise" id="expertis_exercise"></ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-label for="description_exercise">Descripción</ion-label>
+            <ion-input type="text" formControlName="description_exercise" id="description_exercise"></ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-label for="beginer_exercise">Nivel Principiante</ion-label>
+            <ion-input type="text" formControlName="beginer_exercise" id="beginer_exercise"></ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-label for="inter_exercise">Nivel Intermedio</ion-label>
+            <ion-input type="text" formControlName="inter_exercise" id="inter_exercise"></ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-label for="expert_exercise">Nivel Avanzado</ion-label>
+            <ion-input type="text" formControlName="expert_exercise" id="expert_exercise"></ion-input>
+          </ion-item>
+
+          <ion-button expand="full" type="submit" [disabled]="exerciceForm.invalid">Actualizar Ejercicio</ion-button>
+        </form>
       </ion-content>
+
     </ng-template>
   </ion-modal>
 
+  <ion-button expand="block" color="warning" (click)="setModalState(true)">Crear Nuevo Ejercicio</ion-button>
 
-  
-  <ion-button expand="block" color="warning" [routerLink]="['/tabs/subrutinas/crud-crear-ejercicio']">Crear Nuevo Ejercicio</ion-button>
-
- 
 </ion-content>
-
 <!-- FOOTER // TABS -->
 <ion-footer>
   <ion-toolbar>
@@ -101,3 +100,4 @@
   </ion-toolbar>
 </ion-footer>
 
+<!--------------------------------------------------------------------------------------------------------------------------------------->

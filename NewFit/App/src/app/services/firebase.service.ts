@@ -41,10 +41,16 @@ export class FirebaseService {
       const user = await this.auth.currentUser;
 
       if (user) {
-        await this.auth.signOut();
+        let userId = user.uid;
+
+        await this.db.collection('user').doc(userId).delete();
 
         await user.delete();
-        console.log('Cuenta de usuario eliminada con éxito.');
+
+        await this.auth.signOut();
+
+        console.log('Cuenta de Usuario y datos relacionados eliminados con éxito');
+
       } else {
         console.error('No se encontró un usuario autenticado.');
       }
@@ -67,7 +73,7 @@ export class FirebaseService {
 
   addToSubcollection(path: string, subcollectionName: string, object: any) {
     return this.db.doc(path).collection(subcollectionName).add(object)
-  }
+  } 
 
   updateDocument(path: string, object: any){
     return this.db.doc(path).update(object);
