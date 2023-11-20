@@ -28,6 +28,7 @@
             <p>Proteínas: {{ food.protein }}</p>
             <!-- ACTUALIZAR ALIMENTO CON MODAL-->
             <ion-button (click)="loadFoodData(food.id); setModalState(true)" color="primary">Actualizar</ion-button>
+            <ion-button (click)="deleteFood(food.id)" color="danger">Eliminar</ion-button>
           </ion-label>
 
         </ion-item>

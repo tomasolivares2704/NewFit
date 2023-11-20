@@ -32,6 +32,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AlertController } from '@ionic/angular';
 
 //Firebase
 import { FirebaseService } from 'src/app/services/firebase.service';
@@ -81,6 +82,7 @@ export class CrudListPage implements OnInit {
     private firebaseSrv: FirebaseService,
     private utilsSvc: UtilsService,
     private formBuilder: FormBuilder, 
+    private alertController: AlertController,
     ) { }
 
   ngOnInit() {
@@ -153,5 +155,53 @@ export class CrudListPage implements OnInit {
         // Manejo de errores si es necesario
       });
   }
+
+  // Método para eliminar un alimento por su ID
+  async deleteFood(foodId: string) {
+    const alert = await this.alertController.create({
+      header: 'Confirmar eliminación',
+      message: '¿Estás seguro de que deseas eliminar este alimento?',
+      buttons: [
+        {
+          text: 'Cancelar',
+          role: 'cancel',
+          cssClass: 'secondary',
+        },
+        {
+          text: 'Eliminar',
+          handler: () => {
+            // Construye la ruta
+            const path = `user/${this.user.uid}/foods/${foodId}`;
+
+            // Llama al método de eliminación del servicio Firebase
+            this.firebaseSrv.deleteDocument(path)
+              .then(() => {
+                console.log('Alimento eliminado correctamente.');
+                // Actualiza la lista de alimentos después de la eliminación si es necesario
+                this.getFoods();
+              })
+              .catch(error => {
+                console.error('Error al eliminar el alimento:', error);
+                // Maneja los errores si es necesario
+              });
+          }
+        }
+      ]
+    });
+
+    await alert.present();
+  }
+
+
+
+
+
+
+
+
+
+
+
+
 
 }
