@@ -1,3 +1,5 @@
+<app-header backButton="../"></app-header>
+
 
 <ion-content [fullscreen]="true">
   <ion-header collapse="condense">
@@ -13,39 +15,39 @@
         <div *ngIf="form.controls.name.errors?.['required']">Asigna un nombre al ejercicio</div>
       </div>
 
-      <app-custom-input [control]="form.controls.class_exercise" type="string" label="Clase de Ejercicio"></app-custom-input>
-      <div class="validators" *ngIf="form.controls.class_exercise.errors && form.controls.class_exercise.dirty">
-        <div *ngIf="form.controls.class_exercise.errors?.['required']">Ingresa el tipo de ejercicio</div>
+      <app-custom-input [control]="form.controls.class_exercice" type="string" label="Clase de Ejercicio"></app-custom-input>
+      <div class="validators" *ngIf="form.controls.class_exercice.errors && form.controls.class_exercice.dirty">
+        <div *ngIf="form.controls.class_exercice.errors?.['required']">Ingresa el tipo de ejercicio</div>
       </div>
 
-      <app-custom-input [control]="form.controls.expertis_exercise" type="string" label="Expertís del Ejercicio"></app-custom-input>
-      <div class="validators" *ngIf="form.controls.expertis_exercise.errors && form.controls.expertis_exercise.dirty">
-        <div *ngIf="form.controls.expertis_exercise.errors?.['required']">Ingresa la disciplina a la cual pertenece el ejercicio</div>
+      <app-custom-input [control]="form.controls.expertis_exercice" type="string" label="Expertís del Ejercicio"></app-custom-input>
+      <div class="validators" *ngIf="form.controls.expertis_exercice.errors && form.controls.expertis_exercice.dirty">
+        <div *ngIf="form.controls.expertis_exercice.errors?.['required']">Ingresa la disciplina a la cual pertenece el ejercicio</div>
       </div>
 
-      <app-custom-input [control]="form.controls.img_exercise" type="string" label="Imagen"></app-custom-input>
-      <div class="validators" *ngIf="form.controls.img_exercise.errors && form.controls.img_exercise.dirty">
-        <div *ngIf="form.controls.img_exercise.errors?.['required']">Ingresa una imagen al ejercicio</div>
+      <app-custom-input [control]="form.controls.img_exercice" type="string" label="Imagen"></app-custom-input>
+      <div class="validators" *ngIf="form.controls.img_exercice.errors && form.controls.img_exercice.dirty">
+        <div *ngIf="form.controls.img_exercice.errors?.['required']">Ingresa una imagen al ejercicio</div>
       </div>
 
-      <app-custom-input [control]="form.controls.description_exercise" type="string" label="Descripción"></app-custom-input>
-      <div class="validators" *ngIf="form.controls.description_exercise.errors && form.controls.description_exercise.dirty">
-        <div *ngIf="form.controls.description_exercise.errors?.['required']">Añade una descripción al ejercicio</div>
+      <app-custom-input [control]="form.controls.description_exercice" type="string" label="Descripción"></app-custom-input>
+      <div class="validators" *ngIf="form.controls.description_exercice.errors && form.controls.description_exercice.dirty">
+        <div *ngIf="form.controls.description_exercice.errors?.['required']">Añade una descripción al ejercicio</div>
       </div>
 
-      <app-custom-input [control]="form.controls.beginer_exercise" type="string" label="Progresión inicial"></app-custom-input>
-      <div class="validators" *ngIf="form.controls.beginer_exercise.errors && form.controls.beginer_exercise.dirty">
-        <div *ngIf="form.controls.beginer_exercise.errors?.['required']">Ingresa una progresión para principiantes</div>
+      <app-custom-input [control]="form.controls.beginer_exercice" type="string" label="Progresión inicial"></app-custom-input>
+      <div class="validators" *ngIf="form.controls.beginer_exercice.errors && form.controls.beginer_exercice.dirty">
+        <div *ngIf="form.controls.beginer_exercice.errors?.['required']">Ingresa una progresión para principiantes</div>
       </div>
 
-      <app-custom-input [control]="form.controls.inter_exercise" type="string" label="Progresión intermedia"></app-custom-input>
-      <div class="validators" *ngIf="form.controls.inter_exercise.errors && form.controls.inter_exercise.dirty">
-        <div *ngIf="form.controls.inter_exercise.errors?.['required']">Ingresa una progresión para intermedios</div>
+      <app-custom-input [control]="form.controls.inter_exercice" type="string" label="Progresión intermedia"></app-custom-input>
+      <div class="validators" *ngIf="form.controls.inter_exercice.errors && form.controls.inter_exercice.dirty">
+        <div *ngIf="form.controls.inter_exercice.errors?.['required']">Ingresa una progresión para intermedios</div>
       </div>
 
-      <app-custom-input [control]="form.controls.expert_exercise" type="string" label="Progresión avanzada"></app-custom-input>
-      <div class="validators" *ngIf="form.controls.expert_exercise.errors && form.controls.expert_exercise.dirty">
-        <div *ngIf="form.controls.expert_exercise.errors?.['required']">Ingresa el ejercicio para avanzados</div>
+      <app-custom-input [control]="form.controls.expert_exercice" type="string" label="Progresión avanzada"></app-custom-input>
+      <div class="validators" *ngIf="form.controls.expert_exercice.errors && form.controls.expert_exercice.dirty">
+        <div *ngIf="form.controls.expert_exercice.errors?.['required']">Ingresa el ejercicio para avanzados</div>
       </div>
 
       <ion-button class="ion-margin-vertical" [disabled]="form.invalid" type="submit" shape="round" expand="full">

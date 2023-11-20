@@ -30,7 +30,7 @@
  * - Ninguna. El código realiza acciones internas en el componente y en la base de datos, pero no devuelve ningún valor.
  */
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AlertController } from '@ionic/angular';
 

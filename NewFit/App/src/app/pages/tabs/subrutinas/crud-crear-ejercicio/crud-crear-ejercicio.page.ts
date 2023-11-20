@@ -15,7 +15,7 @@ import { exercices } from 'src/app/models/exercices.models';
 })
 export class CrudCrearEjercicioPage implements OnInit {
 
-  exerciseForm: FormGroup;
+  exerciceForm: FormGroup;
 
   user = {} as User;
   exercices = {} as exercices;
@@ -36,13 +36,13 @@ export class CrudCrearEjercicioPage implements OnInit {
 
   form = new FormGroup({
       'name': new FormControl ('', [Validators.required]),
-      'class_exercise': new FormControl ('', [Validators.required]),
-      'expertis_exercise': new FormControl ('', [Validators.required]),
-      'img_exercise': new FormControl ('', [Validators.required]),
-      'description_exercise': new FormControl ('', [Validators.required]),
-      'beginer_exercise': new FormControl ('', [Validators.required]),
-      'inter_exercise': new FormControl ('', [Validators.required]),
-      'expert_exercise': new FormControl ('', [Validators.required]),
+      'class_exercice': new FormControl ('', [Validators.required]),
+      'expertis_exercice': new FormControl ('', [Validators.required]),
+      'img_exercice': new FormControl ('', [Validators.required]),
+      'description_exercice': new FormControl ('', [Validators.required]),
+      'beginer_exercice': new FormControl ('', [Validators.required]),
+      'inter_exercice': new FormControl ('', [Validators.required]),
+      'expert_exercice': new FormControl ('', [Validators.required]),
     });
   
   
@@ -65,7 +65,7 @@ export class CrudCrearEjercicioPage implements OnInit {
     this.firebaseSrv.addToSubcollection(path, 'exercices', this.form.value)
     .then(() => {
       console.log('Nuevo ejercicio añadido correctamente.');
-      this.exerciseForm.reset(); // Limpiar el formulario después de agregar el alimento
+      this.exerciceForm.reset(); // Limpiar el formulario después de agregar el alimento
     })
     .catch(error => {
       console.error('Error al añadir el nuevo ejercicio', error);
@@ -80,22 +80,22 @@ export class CrudCrearEjercicioPage implements OnInit {
      let path = `user/${this.user.uid}/exercices/${this.exercices.id}`;
 
      let name = this.exercices.name;
-     let class_exercise = this.exercices.class_exercise;
-     let expertis_exercise = this.exercices.expert_exercise;
-     let img_exercise = this.exercices.img_exercise;
-     let description_exercise = this.exercices.description_exercise; 
-     let beginer_exercise = this.exercices.beginer_exercise;
-     let inter_exercise = this.exercices.inter_exercise;
-     let expert_exercise = this.exercices.expert_exercise;
+     let class_exercice = this.exercices.class_exercice;
+     let expertis_exercice = this.exercices.expert_exercice;
+     let img_exercice = this.exercices.img_exercice;
+     let description_exercice = this.exercices.description_exercice; 
+     let beginer_exercice = this.exercices.beginer_exercice;
+     let inter_exercice = this.exercices.inter_exercice;
+     let expert_exercice = this.exercices.expert_exercice;
  
      this.firebaseSrv.updateDocument(path, {name, 
-                                            class_exercise, 
-                                            expertis_exercise, 
-                                            img_exercise, 
-                                            description_exercise, 
-                                            beginer_exercise, 
-                                            inter_exercise,
-                                            expert_exercise})
+                                            class_exercice, 
+                                            expertis_exercice, 
+                                            img_exercice, 
+                                            description_exercice, 
+                                            beginer_exercice, 
+                                            inter_exercice,
+                                            expert_exercice})
        .then(() => {
          this.inputEnabled = false; // Desactiva la edición
        })

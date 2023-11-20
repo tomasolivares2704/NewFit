@@ -5,92 +5,113 @@
 </ion-header>
 
 <ion-content>
-  <ion-grid>
-    <ion-row>
-      <ion-list>
-        <ion-item *ngFor="let exercice of exercices">
 
-          <ion-col size="2">
-            <img style="width: 250px; height: auto;" src="{{ exercice.img_exercise }}" alt="{{ exercice.img_exercise }} Imagen">
+    <ion-grid>
+
+      <ion-row>
+
+        <ion-list>
+
+          <ion-item *ngFor="let exercice of exercices">
+
+            <ion-col size="4">
+              <img style="width: 250px; height: auto;" src="{{ exercice.img_exercice }}" alt="{{ exercice.img_exercice }} Imagen">
+            </ion-col>
+
+            <ion-col size="8">
+
+            <ion-label>
+              <h2>{{ exercice.name }}</h2>
+              <input type="hidden" id="exerciceId" name="exerciceId" value="{{exercice.id}}">
+              <p>class exercice: {{ exercice.class_exercice }}</p>
+              <p>expertis exercice: {{ exercice.expertis_exercice }}</p>
+              <p>description exercice: {{ exercice.description_exercice }}</p>
+              <p>beginer exercice: {{ exercice.beginer_exercice }}</p>
+              <p>inter exercice: {{ exercice.inter_exercice }}</p>
+              <p>expert exercice: {{ exercice.expert_exercice }}</p>
+            </ion-label>
+
+            <!--ACTUALIZAR EJERCICIO-->
+            <ion-button (click)="loadExerciceData(exercice.id); setModalState(true)" color="primary">Actualizar</ion-button>
+            <ion-button (click)="deleteExercice(exercice.id)" color="danger">Eliminar</ion-button>
           </ion-col>
 
-          <ion-col size="2"></ion-col>
-
-          <ion-label>
-            <h2>{{ exercice.name }}</h2>
-            <p>class exercise: {{ exercice.class_exercise }}</p>
-            <p>expertis exercise: {{ exercice.expertis_exercise }}</p>
-            <p>description exercise: {{ exercice.description_exercise }}</p>
-            <p>beginer exercise: {{ exercice.beginer_exercise }}</p>
-            <p>inter exercise: {{ exercice.inter_exercise }}</p>
-            <p>expert exercise: {{ exercice.expert_exercise }}</p>
-            <!--ACTUALIZAR EJERCICIO-->
-            <ion-button (click)="loadExerciceData(exercice.id); setModalState(true)">Actualizar</ion-button>
-          </ion-label>
-
-        </ion-item>
-      </ion-list>
-    </ion-row>
-  </ion-grid>
-
-  <ion-modal [isOpen]="isModalOpen">
-    <ng-template>
-      <ion-header>
-        <ion-toolbar>
-          <ion-title>Actualizar Ejercicio</ion-title>
-          <ion-buttons slot="end">
-            <ion-button (click)="setModalState(false)">Cerrar Modal</ion-button>
-          </ion-buttons>
-        </ion-toolbar>
-      </ion-header>
-      <ion-content class="ion-padding">
-
-        <!--FORMULARIO DE EDICIÓN-->
-        <form [formGroup]="exerciceForm" (ngSubmit)="updateExercice()">
-
-          <ion-item>
-            <ion-label position="floating" for="name">Nombre:</ion-label>
-            <ion-input type="text" formControlName="name" id="name"></ion-input>
           </ion-item>
 
-          <ion-item>
-            <ion-label for="class_exercise">Clase de Ejercicio</ion-label>
-            <ion-input type="text" formControlName="class_exercise" id="class_exercise"></ion-input>
-          </ion-item>
+        </ion-list>
 
-          <ion-item>
-            <ion-label for="expertis_exercise">Expertís de Ejercicio</ion-label>
-            <ion-input type="text" formControlName="expertis_exercise" id="expertis_exercise"></ion-input>
-          </ion-item>
+      </ion-row>
 
-          <ion-item>
-            <ion-label for="description_exercise">Descripción</ion-label>
-            <ion-input type="text" formControlName="description_exercise" id="description_exercise"></ion-input>
-          </ion-item>
+    </ion-grid>
 
-          <ion-item>
-            <ion-label for="beginer_exercise">Nivel Principiante</ion-label>
-            <ion-input type="text" formControlName="beginer_exercise" id="beginer_exercise"></ion-input>
-          </ion-item>
+    <ion-modal [isOpen]="isModalOpen">
+      <ng-template>
+        <ion-header>
+          <ion-toolbar>
+            <h2>Actualizar Ejercicio</h2>
+            <ion-buttons slot="end">
+              <ion-button (click)="setModalState(false)">
+                <ion-icon slot="end" name="arrow-undo-outline"></ion-icon>
+              </ion-button>
+            </ion-buttons>
+          </ion-toolbar>
+        </ion-header>
+        <ion-content class="ion-padding">
 
-          <ion-item>
-            <ion-label for="inter_exercise">Nivel Intermedio</ion-label>
-            <ion-input type="text" formControlName="inter_exercise" id="inter_exercise"></ion-input>
-          </ion-item>
+          <!--FORMULARIO DE EDICIÓN-->
+          <ion-card>
+            <form [formGroup]="exerciceForm" (ngSubmit)="updateExercice()">
 
-          <ion-item>
-            <ion-label for="expert_exercise">Nivel Avanzado</ion-label>
-            <ion-input type="text" formControlName="expert_exercise" id="expert_exercise"></ion-input>
-          </ion-item>
+              <ion-item>
+                <ion-label position="floating" for="name">Nombre: </ion-label>
+                <ion-input type="text" formControlName="name" id="name"></ion-input>
+              </ion-item>
 
-          <ion-button expand="full" type="submit" [disabled]="exerciceForm.invalid">Actualizar Ejercicio</ion-button>
-        </form>
-      </ion-content>
+              <ion-item>
+                <ion-label for="class_exercice">Clase de Ejercicio: </ion-label>
+                <ion-input type="text" formControlName="class_exercice" id="class_exercice"></ion-input>
+              </ion-item>
 
-    </ng-template>
-  </ion-modal>
+              <ion-item>
+                <ion-label for="expertis_exercice">Expertís de Ejercicio: </ion-label>
+                <ion-input type="text" formControlName="expertis_exercice" id="expertis_exercice"></ion-input>
+              </ion-item>
 
-  <ion-button expand="block" color="warning" (click)="setModalState(true)">Crear Nuevo Ejercicio</ion-button>
+              <ion-item>
+                <ion-label for="beginer_exercice">Nivel Principiante: </ion-label>
+                <ion-input type="text" formControlName="beginer_exercice" id="beginer_exercice"></ion-input>
+              </ion-item>
+
+              <ion-item>
+                <ion-label for="inter_exercice">Nivel Intermedio: </ion-label>
+                <ion-input type="text" formControlName="inter_exercice" id="inter_exercice"></ion-input>
+              </ion-item>
+
+              <ion-item>
+                <ion-label for="expert_exercice">Nivel Avanzado: </ion-label>
+                <ion-input type="text" formControlName="expert_exercice" id="expert_exercice"></ion-input>
+              </ion-item>
+
+              <ion-item>
+                <ion-label for="img_exercice">imagen: </ion-label>
+                <ion-input type="text" formControlName="img_exercice" id="img_exercice"></ion-input>
+              </ion-item>
+
+              <ion-item>
+                <ion-label for="description_exercice">Descripción: </ion-label>
+                <ion-input type="text" formControlName="description_exercice" id="description_exercice"></ion-input>
+              </ion-item>
+
+              <ion-button expand="full" type="submit" [disabled]="exerciceForm.invalid">Actualizar Ejercicio</ion-button>
+            </form>
+        </ion-card>
+        </ion-content>
+
+      </ng-template>
+    </ion-modal>
+
+    <ion-button expand="block" color="warning" [routerLink]="['/tabs/subrutinas/crud-crear-ejercicio']">Crear Nuevo Ejercicio</ion-button>
+
 
 </ion-content>
 <!-- FOOTER // TABS -->

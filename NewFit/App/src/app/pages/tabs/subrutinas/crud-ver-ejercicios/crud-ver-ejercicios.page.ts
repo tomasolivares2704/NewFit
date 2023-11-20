@@ -4,6 +4,7 @@ import { exercices } from 'src/app/models/exercices.models';
 import { UtilsService } from 'src/app/services/utils.service';
 import { FirebaseService } from 'src/app/services/firebase.service';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
+import { AlertController } from '@ionic/angular';
 
 @Component({
   selector: 'app-crud-ver-ejercicios',
@@ -31,13 +32,13 @@ export class CrudVerEjerciciosPage implements OnInit {
       // Actualiza el formulario con los datos del ejercicio
       this.exerciceForm.patchValue({
         name: exercice.name,
-        class_exercise: exercice.class_exercise,
-        expertis_exercise: exercice.expertis_exercise,
-        img_exercise: exercice.img_exercise,
-        description_exercise: exercice.description_exercise,
-        beginer_exercise: exercice.beginer_exercise,
-        inter_exercise: exercice.inter_exercise,
-        expert_exercise: exercice.expert_exercise,
+        class_exercice: exercice.class_exercice,
+        expertis_exercice: exercice.expertis_exercice,
+        img_exercice: exercice.img_exercice,
+        description_exercice: exercice.description_exercice,
+        beginer_exercice: exercice.beginer_exercice,
+        inter_exercice: exercice.inter_exercice,
+        expert_exercice: exercice.expert_exercice,
       });
       this.exerciceId = id; // Almacena el ID del ejercicio
       console.log("ID del ejercicio seleccionado:", id);
@@ -48,6 +49,7 @@ export class CrudVerEjerciciosPage implements OnInit {
     private firebaseSrv: FirebaseService,
     private utilsSvc: UtilsService,
     private formBuilder: FormBuilder,
+    private alertController: AlertController,
   ) { }
 
   ngOnInit() {
@@ -59,13 +61,13 @@ export class CrudVerEjerciciosPage implements OnInit {
   initForm() {
     this.exerciceForm = this.formBuilder.group({
       'name': ['', [Validators.required]],
-      'class_exercise': ['', [Validators.required]],
-      'expertis_exercise': ['', [Validators.required]],
-      'img_exercise': ['', [Validators.required]],
-      'description_exercise': ['', [Validators.required]],
-      'beginer_exercise': ['', [Validators.required]],
-      'inter_exercise': ['', [Validators.required]],
-      'expert_exercise': ['', [Validators.required]],
+      'class_exercice': ['', [Validators.required]],
+      'expertis_exercice': ['', [Validators.required]],
+      'img_exercice': ['', [Validators.required]],
+      'description_exercice': ['', [Validators.required]],
+      'beginer_exercice': ['', [Validators.required]],
+      'inter_exercice': ['', [Validators.required]],
+      'expert_exercice': ['', [Validators.required]],
     })
   }
 
@@ -97,13 +99,13 @@ export class CrudVerEjerciciosPage implements OnInit {
     // Crea Objeto
     const updatedExerciceData = {
       name: this.exerciceForm.value.name.toString(),
-      class_exercise: this.exerciceForm.value.class_exercise.toString(),
-      expertis_exercise: this.exerciceForm.value.expertis_exercise.toString(),
-      img_exercise: this.exerciceForm.value.img_exercise.toString(),
-      description_exercise: this.exerciceForm.value.description_exercise.toString(),
-      beginer_exercise: this.exerciceForm.value.beginer_exercise.toString(),
-      inter_exercise: this.exerciceForm.value.inter_exercise.toString(),
-      expert_exercise: this.exerciceForm.value.expert_exercise.toString(),
+      class_exercice: this.exerciceForm.value.class_exercice.toString(),
+      expertis_exercice: this.exerciceForm.value.expertis_exercice.toString(),
+      img_exercice: this.exerciceForm.value.img_exercice.toString(),
+      description_exercice: this.exerciceForm.value.description_exercice.toString(),
+      beginer_exercice: this.exerciceForm.value.beginer_exercice.toString(),
+      inter_exercice: this.exerciceForm.value.inter_exercice.toString(),
+      expert_exercice: this.exerciceForm.value.expert_exercice.toString(),
     };
 
     // Construye la Ruta
@@ -116,10 +118,51 @@ export class CrudVerEjerciciosPage implements OnInit {
         console.log('Ejercicio actualizado correctamente.');
         this.exerciceForm.reset(); // Limpiar el formulario después de actualizar el ejercicio
         this.inputEnabled = false; // Desactiva la edición
+
+        window.location.reload();
       })
       .catch(error => {
         console.error('Error al actualizar el ejercicio:', error);
         // Manejo de errores si es necesario
       });
   }
+
+    // Método para eliminar un alimento por su ID
+    async deleteExercice(exerciceId: string) {
+      const alert = await this.alertController.create({
+        header: 'Confirmar eliminación',
+        message: '¿Estás seguro de que deseas eliminar este ejercicio?',
+        buttons: [
+          {
+            text: 'Cancelar',
+            role: 'cancel',
+            cssClass: 'secondary',
+          },
+          {
+            text: 'Eliminar',
+            handler: () => {
+              // Construye la ruta
+              const path = `user/${this.user.uid}/exercices/${exerciceId}`;
+  
+              // Llama al método de eliminación del servicio Firebase
+              this.firebaseSrv.deleteDocument(path)
+                .then(() => {
+                  console.log('Ejercicio eliminado correctamente.');
+                  // Actualiza la lista de alimentos después de la eliminación si es necesario
+                  this.getExercices();
+
+                  window.location.reload();
+                })
+                .catch(error => {
+                  console.error('Error al eliminar el ejercicio:', error);
+                  // Maneja los errores si es necesario
+                });
+            }
+          }
+        ]
+      });
+  
+      await alert.present();
+    }
+  
 }
