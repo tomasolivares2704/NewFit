@@ -135,7 +135,7 @@ export class CrudListPage implements OnInit {
         carbs: this.foodForm.value.carbs.toString(),
         fats: this.foodForm.value.fats.toString(),
         name: this.foodForm.value.name.toString(),
-        protein: this.foodForm.value.protein.toString(),
+        protein: this.foodForm.value.protein,
         img: this.foodForm.value.img.toString(),
       };
     

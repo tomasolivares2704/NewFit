@@ -29,9 +29,14 @@ const routes: Routes = [
   {
     path: 'antropometrico',
     loadChildren: () => import('./antropometrico/antropometrico.module').then( m => m.AntropometricoPageModule)
-  },  {
+  },
+  {
     path: 'estadisticas',
     loadChildren: () => import('./estadisticas/estadisticas.module').then( m => m.EstadisticasPageModule)
+  },
+  {
+    path: 'id-food/:id',
+    loadChildren: () => import('./id-food/id-food.module').then( m => m.IdFoodPageModule)
   },
 
 ];

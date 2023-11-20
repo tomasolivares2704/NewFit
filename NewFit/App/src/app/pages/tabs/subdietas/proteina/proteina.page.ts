@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 //Firebase
 import { FirebaseService } from 'src/app/services/firebase.service';
@@ -20,6 +21,8 @@ export class ProteinaPage implements OnInit {
   user = {} as User;
   isModalOpen = false;
   inputEnabled: boolean;
+  foodsWithProteinThreshold: Foods[] = [];
+
 
   setOpen(isOpen: boolean) {
     this.isModalOpen = isOpen;
@@ -54,7 +57,11 @@ export class ProteinaPage implements OnInit {
   selectedFoodId: string;
 
 
-  constructor(private firebaseSrv: FirebaseService,private utilsSvc: UtilsService,private formBuilder: FormBuilder) { }
+  constructor(
+    private firebaseSrv: FirebaseService,
+    private utilsSvc: UtilsService,
+    private formBuilder: FormBuilder,
+    private router: Router) { }
 
   ngOnInit() {
     this.getUser();
@@ -78,19 +85,34 @@ export class ProteinaPage implements OnInit {
     return this.user = this.utilsSvc.getElementInLocalStorage('user');
   }
 
-  //Funcion para Obtener Foods
-  getFoods(){
-    let user: User = this.utilsSvc.getElementInLocalStorage('user')
-    let path = `user/${user.uid}`;
-    let sub = this.firebaseSrv.getSubcollection(path, 'foods').subscribe({
-      next: (res: Foods[]) => {
-        console.log(res);
-        this.foods = res
-        sub.unsubscribe()
-        
-      }
-    })
+ // Agrega este nuevo método al componente
+  getFoodsWithProteinThreshold(threshold: number): Foods[] {
+    return this.foods.filter(food => food.protein >= threshold);
+
   }
+
+// Modifica tu función getFoods para obtener los datos y luego llamar al nuevo método
+// Modifica tu función getFoods para obtener los datos y luego llamar al nuevo método
+getFoods() {
+  let user: User = this.utilsSvc.getElementInLocalStorage('user');
+  let path = `user/${user.uid}`;
+  let sub = this.firebaseSrv.getSubcollection(path, 'foods').subscribe({
+    next: (res: Foods[]) => {
+      console.log(res);
+      
+      // Convertir la propiedad protein a número si es necesario
+      this.foods = res.map(food => ({
+        ...food,
+        protein: typeof food.protein === 'string' ? parseFloat(food.protein) : food.protein
+      }));
+
+      sub.unsubscribe();
+
+      // Puedes hacer lo que quieras con los alimentos filtrados, por ejemplo, asignarlos a otra variable
+      // this.filteredFoods = foodsWithProteinThreshold;
+    }
+  });
+}
   
 
     updateFood(id: string) {
@@ -98,7 +120,7 @@ export class ProteinaPage implements OnInit {
       console.log("selectedFoodId:", this.selectedFoodId);
   
       const updatedFoodData = {
-        calories: this.foodForm.value.calories.toString(),
+        calories: this.foodForm.value.calories,
         carbs: this.foodForm.value.carbs.toString(),
         fats: this.foodForm.value.fats.toString(),
         name: this.foodForm.value.name,
@@ -119,6 +141,11 @@ export class ProteinaPage implements OnInit {
         console.error('Error al actualizar el alimento:', error);
         // Manejo de errores si es necesario
       });
+  }
+
+  redirectToFoodDetails(foodId: string) {
+    // Navegar a la página de detalles de alimentos y pasar el ID como parámetro
+    this.router.navigate(['/tabs/id-food', foodId]);
   }
 
 

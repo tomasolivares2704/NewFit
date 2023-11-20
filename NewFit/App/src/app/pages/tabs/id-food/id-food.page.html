@@ -1,0 +1,23 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/tabs/home"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Detalles del Alimento</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <!-- Contenido de los detalles del alimento -->
+  <ion-card>
+    <ion-card-content>
+      <!-- Aquí puedes mostrar la información detallada del alimento -->
+      <h2>{{ food.name }}</h2>
+      <p>Calorías: {{ food.calories }} kcal</p>
+      <p>Proteína: {{ food.protein }}g</p>
+      <p>Grasa: {{ food.fats }}g</p>
+      <p>Carbohidratos: {{ food.carbs }}g</p>
+    </ion-card-content>
+  </ion-card>
+</ion-content>
+

@@ -7,38 +7,34 @@
    A continuación, verás una lista con nuestras sugerencias de recetas diarias de alimentos altos en proteina para mejorar tu condición física:
  </h5>
 
- <ion-card *ngFor="let food of foods" class="food-card">
-  <img [src]="food.img" />
+ <ion-card *ngFor="let food of getFoodsWithProteinThreshold(33)" class="food-card" (click)="redirectToFoodDetails(food.id)">
+  <ion-img [src]="food.img" alt="{{ food.name }} Image"></ion-img>
   <ion-card-content>
-    <div>
+    <div class="food-details">
       <h1 class="food-title">{{ food.name }}</h1>
-    </div>
-
-    <div class="nutrition-section">
-      <div class="nutrition-category">
-        <h3>Calorías:</h3>
-        <p>{{ food.calories }} kcal</p>
-      </div>
-      <div class="nutrition-category">
-        <h3>Proteína:</h3>
-        <p>{{ food.protein }}g</p>
-      </div>
-    </div>
-
-    <div class="nutrition-section">
-      <div class="nutrition-category">
-        <p>Grasa:</p>
-        <p>{{ food.fats }}g</p>
-      </div>
-      <div class="nutrition-category">
-        <p>Carbohidratos:</p>
-        <p>{{ food.carbs }}g</p>
+      <div class="nutrition-info">
+        <div class="nutrition-category">
+          <ion-icon name="flame" class="icon"></ion-icon>
+          <p>{{ food.calories }} kcal</p>
+        </div>
+        <div class="nutrition-category">
+          <ion-icon name="fitness" class="icon"></ion-icon>
+          <p class="{{ food.protein >= 33 ? 'high-protein' : '' }}">{{ food.protein }}g</p>
+        </div>
+        <div class="nutrition-category">
+          <ion-icon name="water" class="icon"></ion-icon>
+          <p>{{ food.fats }}g</p>
+        </div>
+        <div class="nutrition-category">
+          <ion-icon name="nutrition" class="icon"></ion-icon>
+          <p>{{ food.carbs }}g</p>
+        </div>
       </div>
     </div>
   </ion-card-content>
 </ion-card>
 
-
+ 
 
 </ion-content>
 
