@@ -1,0 +1,11 @@
+<!-- DROPDOWN MENU -->
+<ion-item *ngIf="type === 'select'" class="ion-margin-vertical">
+  <ion-icon *ngIf="icon" slot="start" [name]="icon"></ion-icon>
+  <ion-label>{{ label }}</ion-label>
+  <ion-select [formControl]="control" placeholder="Seleccionar">
+    <ion-select-option *ngFor="let option of options" [value]="option">
+      {{ option }}
+    </ion-select-option>
+  </ion-select>
+</ion-item>
+<!-- ... -->

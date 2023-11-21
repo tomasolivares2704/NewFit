@@ -16,6 +16,12 @@ export class AntropometricoPage implements OnInit {
   user = {} as User;
   antropometrico = {} as Antropometrico;
 
+  // DropDown Menu Options
+  sexo = ['Masculino', 'Femenino']
+  objetivos = ['Ganar Peso', 'Perder Peso', 'Definir']; 
+  nivelesActividad = ['Principiante', 'Intermedio', 'Avanzado']; 
+  
+
   constructor(
     private firebaseSvc: FirebaseService,
     private utilsSvc: UtilsService

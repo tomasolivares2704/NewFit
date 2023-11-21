@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
+import { Component, OnInit, Input} from '@angular/core';
 import { FormControl } from '@angular/forms';
 
 @Component({
@@ -20,8 +20,7 @@ export class CustomInputComponent  implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    if(this.type === 'password') this.isPassword = true;
-    
+    if(this.type === 'password') this.isPassword = true; 
   }
 
   showOrHidePassword() {

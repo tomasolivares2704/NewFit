@@ -22,18 +22,18 @@
           <div *ngIf="form.controls.peso.errors?.['required']">Ingresa tu estatura</div>
         </div>
 
-        <app-custom-input [control]="form.controls.sexo" type="string" label="Sexo" icon="transgender-outline"></app-custom-input>
+        <app-custom-dropdown-menu [control]="form.controls.sexo" type="select" label="Sexo" icon="transgender-outline" [options]="['Masculino', 'Femenino', 'Otro']"></app-custom-dropdown-menu>
         <div class="validators" *ngIf="form.controls.sexo.errors && form.controls.sexo.dirty">
-          <div *ngIf="form.controls.peso.errors?.['required']">Ingresa tu sexo</div>
+          <div *ngIf="form.controls.sexo.errors?.['required']">Ingresa tu Sexo</div>
         </div>
 
-        <app-custom-input [control]="form.controls.objetivo" type="string" label="Objetivo" icon="golf-outline"></app-custom-input>
-        <div class="validators" *ngIf="form.controls.objetivo.errors && form.controls.peso.dirty">
+        <app-custom-dropdown-menu [control]="form.controls.objetivo" type="select" label="Objetivo" icon="golf-outline" [options]="['Ganar Peso', 'Perder Peso', 'Definir']"></app-custom-dropdown-menu>
+        <div class="validators" *ngIf="form.controls.objetivo.errors && form.controls.objetivo.dirty">
           <div *ngIf="form.controls.objetivo.errors?.['required']">Ingresa tu estatura</div>
         </div>
 
-        <app-custom-input [control]="form.controls.nivelActividad" type="string" label="Nivel de Actividad Física" icon="heart-circle-outline"></app-custom-input>
-        <div class="validators" *ngIf="form.controls.nivelActividad.errors && form.controls.sexo.dirty">
+        <app-custom-dropdown-menu [control]="form.controls.nivelActividad" type="select" label="Nivel de Actividad Física" icon="heart-circle-outline" [options]="['Principiante', 'Intermedio', 'Avanzado']"></app-custom-dropdown-menu>
+        <div class="validators" *ngIf="form.controls.nivelActividad.errors && form.controls.nivelActividad.dirty">
           <div *ngIf="form.controls.nivelActividad.errors?.['required']">Ingresa tu sexo</div>
         </div>
 
