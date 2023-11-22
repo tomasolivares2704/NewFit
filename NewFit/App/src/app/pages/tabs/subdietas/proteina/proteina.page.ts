@@ -118,11 +118,9 @@ export class ProteinaPage implements OnInit {
         !isNaN(food.carbs) &&
         !isNaN(food.fats) &&
         !isNaN(food.calories) &&
-        food.protein >= 28 &&
-        food.carbs <= 15 &&
-        food.fats <= 10 &&
-        food.calories <= 300
-    );
+        food.protein >= 25 &&
+        food.calories <= 380   
+         );
   }
   
 

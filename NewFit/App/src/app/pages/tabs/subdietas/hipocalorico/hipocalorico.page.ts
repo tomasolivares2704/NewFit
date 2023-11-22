@@ -64,10 +64,10 @@ export class HipocaloricoPage implements OnInit {
         !isNaN(food.carbs) &&
         !isNaN(food.fats) &&
         !isNaN(food.calories) &&
-        food.protein >= 20 &&
-        food.carbs >= 18 &&
-        food.fats < 15 &&
-        food.calories <= 300
+        food.protein >= 10 &&
+        food.carbs >= 15 &&
+        food.fats < 12 &&
+        food.calories <= 280
     );
   }
 
