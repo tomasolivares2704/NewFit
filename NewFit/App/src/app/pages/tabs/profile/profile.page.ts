@@ -19,6 +19,7 @@ export class ProfilePage implements OnInit {
   foods: Foods[] = [];
 
   inputEnabled: boolean = false;
+  openCam: boolean = false;
 
   constructor(
     private firebaseSrv: FirebaseService,
@@ -122,6 +123,10 @@ export class ProfilePage implements OnInit {
 
   enableInput() {
     this.inputEnabled = !this.inputEnabled;
+  }
+
+  openCamera() {
+    this.openCam = !this.openCam;
   }
 
 }

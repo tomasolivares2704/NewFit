@@ -9,6 +9,7 @@ import { LogoComponent } from './components/logo/logo.component';
 import { AddUpdateTaskComponent } from './components/add-update-task/add-update-task.component';
 import { BarramenuComponent } from './components/barramenu/barramenu.component';
 import { CustomDropdownMenuComponent } from './components/custom-dropdown-menu/custom-dropdown-menu.component';
+import { CamComponent } from './components/cam/cam.component';
 
 // Import ng-circle-progress
 import { NgCircleProgressModule } from 'ng-circle-progress';
@@ -21,6 +22,7 @@ import { NgCircleProgressModule } from 'ng-circle-progress';
     AddUpdateTaskComponent,
     BarramenuComponent,
     CustomDropdownMenuComponent,
+    CamComponent
   ],
   exports: [
     HeaderComponent,
@@ -30,6 +32,7 @@ import { NgCircleProgressModule } from 'ng-circle-progress';
     AddUpdateTaskComponent,
     BarramenuComponent,
     CustomDropdownMenuComponent,
+    CamComponent
   ],
   imports: [
     CommonModule,

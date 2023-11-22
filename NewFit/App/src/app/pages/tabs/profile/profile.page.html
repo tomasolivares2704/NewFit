@@ -2,6 +2,8 @@
 <ion-content class="ion-padding">
   <div class="profile-header ion-text-center">
     <ion-icon name="accessibility-outline"></ion-icon>
+    <ion-button (click)="openCamera()" expand="block"></ion-button>
+    <app-cam *ngIf="openCam"></app-cam>
     <h2 class="profile-name">{{ user.name }}</h2>
     <div class="profile-email">{{ user.email }}</div>
   </div>
