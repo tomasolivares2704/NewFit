@@ -1,50 +1,41 @@
+/* proteina.page.scss */
+
 .food-card {
-    margin: 10px;
-    border-radius: 10px;
-    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease;
+  margin: 10px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  color: #333; /* Color oscuro para el texto */
+  background-size: cover;
+  background-position: center;
+  text-transform: uppercase;
+
+  ion-card-header {
+    h2.food-name {
+      font-size: 1.5em;
+      font-weight: bold;
+      text-align: right; /* Alinea el texto a la derecha */
+      color: #333; /* Color oscuro para el texto */
+    }
+
+    ion-card-subtitle.food-calories {
+      font-size: 1.2em;
+      color: #333; /* Puedes ajustar el color según tus preferencias */
+      text-align: right; /* Alinea el texto a la derecha */
+    }
   }
-  
-  .food-card:hover {
-    transform: scale(1.05);
+
+  ion-card-content {
+    p.food-nutrient {
+      font-size: 1.1em;
+      margin: 5px 0;
+      color: #333;
+      text-align: right; /* Alinea el texto a la derecha */
+    }
+
+    ion-icon.icon {
+      font-size: 1.2em;
+      margin-right: 5px; /* Ajusta el espacio entre el ícono y el texto */
+    }
   }
-  
-  .food-card img {
-    width: 100%;
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
-  }
-  
-  .food-card ion-card-content {
-    padding: 16px;
-  }
-  
-  .food-title {
-    font-size: 24px;
-    font-weight: bold;
-    margin-bottom: 8px;
-  }
-  
-  .nutrition-section {
-    display: flex;
-    justify-content: space-between;
-  }
-  
-  .nutrition-category {
-    text-align: left;
-  }
-  
-  .nutrition-category h3 {
-    font-size: 18px;
-    font-weight: bold;
-    color: white;
-    margin-bottom: 4px;
-  }
-  
-  .nutrition-category p {
-    font-size: 18px;
-    color: #ceff25;
-    margin-bottom: 4px;
-  }
-  
-  
+}
