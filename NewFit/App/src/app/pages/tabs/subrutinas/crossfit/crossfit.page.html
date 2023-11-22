@@ -1,0 +1,41 @@
+
+
+
+<ion-content class="ion-padding">
+  
+  <h5>
+   A continuación, verás una lista con nuestras sugerencias de ejercicios de crossfit:
+ </h5>
+
+ <ion-card *ngFor="let exercice of exercices" class="food-card">
+  <img [src]="exercice.img_exercice" />
+  <ion-card-content>
+    <div>
+      <h1 class="food-title">{{ exercice.name }}</h1>
+    </div>
+
+    <div class="nutrition-section">
+      <div class="nutrition-category">
+        <h3>class exercice:</h3>
+        <p>{{ exercice.class_exercice }}</p>
+      </div>
+
+      <div class="nutrition-category">
+        <h3>expertis exercice:</h3>
+        <p>{{ exercice.expertis_exercice }}</p>
+      </div>
+    </div>
+  </ion-card-content>
+</ion-card>
+
+
+
+</ion-content>
+
+<!-- FOOTER // TABS -->
+  
+<ion-footer>
+  <ion-toolbar>
+    <app-barramenu></app-barramenu>
+  </ion-toolbar>
+</ion-footer>

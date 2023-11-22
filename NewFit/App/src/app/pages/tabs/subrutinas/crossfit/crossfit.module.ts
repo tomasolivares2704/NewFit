@@ -4,9 +4,9 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { ProteinaPageRoutingModule } from './proteina-routing.module';
+import { CrossfitPageRoutingModule } from './crossfit-routing.module';
 
-import { ProteinaPage } from './proteina.page';
+import { CrossfitPage } from './crossfit.page';
 
 import { SharedModule } from 'src/app/shared/shared.module';
 
@@ -15,9 +15,9 @@ import { SharedModule } from 'src/app/shared/shared.module';
     CommonModule,
     FormsModule,
     IonicModule,
-    ProteinaPageRoutingModule,
+    CrossfitPageRoutingModule,
     SharedModule,
   ],
-  declarations: [ProteinaPage]
+  declarations: [CrossfitPage]
 })
-export class ProteinaPageModule {}
+export class CrossfitPageModule {}

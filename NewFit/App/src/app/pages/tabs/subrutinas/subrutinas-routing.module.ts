@@ -15,7 +15,11 @@ const routes: Routes = [
   {
     path: 'crud-ver-ejercicio',
     loadChildren: () => import('./crud-ver-ejercicios/crud-ver-ejercicios.module').then( m => m.CrudVerEjerciciosPageModule)
+  },  {
+    path: 'crossfit',
+    loadChildren: () => import('./crossfit/crossfit.module').then( m => m.CrossfitPageModule)
   }
+
 ];
 
 @NgModule({
