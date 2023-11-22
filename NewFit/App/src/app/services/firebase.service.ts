@@ -4,6 +4,9 @@ import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { User } from '../models/user.models';
 import { getAuth, updateProfile } from 'firebase/auth';
 import { UtilsService } from './utils.service';
+import { Foods } from '../models/food.models';
+
+import { Observable, of } from 'rxjs';  // Importa 'of' desde 'rxjs'
 
 @Injectable({
   providedIn: 'root'
@@ -76,5 +79,20 @@ export class FirebaseService {
   deleteDocument(path: string){
     return this.db.doc(path).delete();
   }
+
+  // Otro código en tu servicio...
+getFoodDetails(foodId: string): Observable<Foods | null> {
+  try {
+    return this.db.doc<Foods>(`foods/${foodId}`).valueChanges();
+  } catch (error) {
+    console.error('Error al obtener detalles del alimento:', error);
+    return of(null);
+  }
+}
+// Otro código en tu servicio...
+
+
+
+
 
 }

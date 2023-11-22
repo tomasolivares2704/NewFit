@@ -1,3 +1,4 @@
+// Importa otras dependencias que puedas necesitar
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { FirebaseService } from 'src/app/services/firebase.service';
@@ -9,7 +10,7 @@ import { Foods } from 'src/app/models/food.models';
   styleUrls: ['./id-food.page.scss'],
 })
 export class IdFoodPage implements OnInit {
-  food: Foods; // Asegúrate de tener la propiedad 'food' definida
+  food: Foods | null;
 
   constructor(private route: ActivatedRoute, private firebaseSrv: FirebaseService) {}
 
@@ -20,9 +21,16 @@ export class IdFoodPage implements OnInit {
     });
   }
 
-  loadFoodDetails(foodId: string) {
-    // Utiliza tu servicio de Firebase para obtener los detalles del alimento según el ID
-    // this.firebaseSrv.getFoodDetails(foodId).subscribe(food => this.food = food);
+  async loadFoodDetails(foodId: string) {
+    try {
+      const food = await this.firebaseSrv.getFoodDetails(foodId).toPromise();
+      if (food) {
+        this.food = food;
+      } else {
+        console.error('No se encontró el alimento con el ID:', foodId);
+      }
+    } catch (error) {
+      console.error('Error al obtener detalles del alimento:', error);
+    }
   }
-  
 }
