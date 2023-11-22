@@ -1,49 +1,33 @@
+<!-- proteina.page.html -->
 
+<ion-header>
+  <ion-toolbar>
+    <ion-title>
+      Proteína
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
 
+<ion-content>
+  <!-- Contenido de la página -->
+  <ion-card *ngFor="let food of foodsWithThresholds" class="food-card">
+    <ion-card-header>
+      {{ food.name }}
+    </ion-card-header>
 
-<ion-content class="ion-padding">
-  
-  <h5>
-   A continuación, verás una lista con nuestras sugerencias de recetas diarias de alimentos altos en proteina para mejorar tu condición física:
- </h5>
+    <ion-card-content>
+      <ion-img [src]="food.img" [alt]="food.name"></ion-img>
+      <p>Calorías: {{ food.calories }}</p>
+      <p>Carbohidratos: {{ food.carbs }}</p>
+      <p>Grasas: {{ food.fats }}</p>
+      <p>Proteínas: {{ food.protein }}</p>
+    </ion-card-content>
 
- <ion-card *ngFor="let food of foods" class="food-card">
-  <img [src]="food.img" />
-  <ion-card-content>
-    <div>
-      <h1 class="food-title">{{ food.name }}</h1>
-    </div>
-
-    <div class="nutrition-section">
-      <div class="nutrition-category">
-        <h3>Calorías:</h3>
-        <p>{{ food.calories }} kcal</p>
-      </div>
-      <div class="nutrition-category">
-        <h3>Proteína:</h3>
-        <p>{{ food.protein }}g</p>
-      </div>
-    </div>
-
-    <div class="nutrition-section">
-      <div class="nutrition-category">
-        <p>Grasa:</p>
-        <p>{{ food.fats }}g</p>
-      </div>
-      <div class="nutrition-category">
-        <p>Carbohidratos:</p>
-        <p>{{ food.carbs }}g</p>
-      </div>
-    </div>
-  </ion-card-content>
-</ion-card>
-
-
-
+  </ion-card>
 </ion-content>
 
+
 <!-- FOOTER // TABS -->
-  
 <ion-footer>
   <ion-toolbar>
     <app-barramenu></app-barramenu>

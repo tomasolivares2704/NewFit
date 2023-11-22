@@ -20,6 +20,8 @@ export class ProteinaPage implements OnInit {
   user = {} as User;
   isModalOpen = false;
   inputEnabled: boolean;
+  
+  foodsWithThresholds: Foods[] = []; 
 
   setOpen(isOpen: boolean) {
     this.isModalOpen = isOpen;
@@ -60,6 +62,7 @@ export class ProteinaPage implements OnInit {
     this.getUser();
     this.getFoods();
     this.initForm();
+    
   }
   //Optener Valores
   initForm() {
@@ -79,31 +82,64 @@ export class ProteinaPage implements OnInit {
   }
 
   //Funcion para Obtener Foods
-  getFoods(){
-    let user: User = this.utilsSvc.getElementInLocalStorage('user')
+  //getFoods(){
+    //let user: User = this.utilsSvc.getElementInLocalStorage('user')
+    //let path = `user/${user.uid}`;
+    //let sub = this.firebaseSrv.getSubcollection(path, 'foods').subscribe({
+      //next: (res: Foods[]) => {
+        //console.log(res);
+        //this.foods = res
+        //sub.unsubscribe()
+        
+      //}
+    //})
+  //}
+
+  getFoods() {
+    let user: User = this.utilsSvc.getElementInLocalStorage('user');
     let path = `user/${user.uid}`;
     let sub = this.firebaseSrv.getSubcollection(path, 'foods').subscribe({
       next: (res: Foods[]) => {
         console.log(res);
-        this.foods = res
-        sub.unsubscribe()
-        
+  
+        // No necesitas convertir la propiedad protein a cadena (string)
+        this.foods = res;
+        this.foodsWithThresholds = this.filterFoods(this.foods);
+  
+        sub.unsubscribe();
       }
-    })
+    });
+  }
+  
+  filterFoods(foods: Foods[]): Foods[] {
+    return foods.filter(
+      (food) =>
+        !isNaN(food.protein) &&
+        !isNaN(food.carbs) &&
+        !isNaN(food.fats) &&
+        !isNaN(food.calories) &&
+        food.protein >= 28 &&
+        food.carbs <= 15 &&
+        food.fats <= 10 &&
+        food.calories <= 300
+    );
   }
   
 
+  
+  
+  
     updateFood(id: string) {
       console.log("ID del alimento en la función updateFood:", id);
       console.log("selectedFoodId:", this.selectedFoodId);
   
       const updatedFoodData = {
-        calories: this.foodForm.value.calories.toString(),
-        carbs: this.foodForm.value.carbs.toString(),
-        fats: this.foodForm.value.fats.toString(),
+        calories: this.foodForm.value.calories,
+        carbs: this.foodForm.value.carbs,
+        fats: this.foodForm.value.fats,
         name: this.foodForm.value.name,
-        protein: this.foodForm.value.protein.toString(),
-        img: this.foodForm.value.protein.toString(),
+        protein: this.foodForm.value.protein,
+        img: this.foodForm.value.img.toString(),
 
       };
   

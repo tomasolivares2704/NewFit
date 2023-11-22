@@ -131,11 +131,11 @@ export class CrudListPage implements OnInit {
     
       // Crea Objeto
       const updatedFoodData = {
-        calories: this.foodForm.value.calories.toString(),
-        carbs: this.foodForm.value.carbs.toString(),
-        fats: this.foodForm.value.fats.toString(),
-        name: this.foodForm.value.name.toString(),
-        protein: this.foodForm.value.protein.toString(),
+        calories: this.foodForm.value.calories,
+        carbs: this.foodForm.value.carbs,
+        fats: this.foodForm.value.fats,
+        name: this.foodForm.value.name,
+        protein: this.foodForm.value.protein,
         img: this.foodForm.value.img.toString(),
       };
     
