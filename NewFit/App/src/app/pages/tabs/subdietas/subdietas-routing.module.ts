@@ -19,7 +19,15 @@ const routes: Routes = [
   {
     path: 'crud-put',
     loadChildren: () => import('./crud-put/crud-put.module').then( m => m.CrudPutPageModule)
+  },  {
+    path: 'hipocalorico',
+    loadChildren: () => import('./hipocalorico/hipocalorico.module').then( m => m.HipocaloricoPageModule)
+  },
+  {
+    path: 'hipercalorico',
+    loadChildren: () => import('./hipercalorico/hipercalorico.module').then( m => m.HipercaloricoPageModule)
   }
+
 ];
 
 @NgModule({
