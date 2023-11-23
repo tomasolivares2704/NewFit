@@ -23,10 +23,10 @@ const routes: Routes = [
   {
     path: 'hit',
     loadChildren: () => import('./hit/hit.module').then( m => m.HitPageModule)
-
+  },
+  {
     path: 'crossfit',
     loadChildren: () => import('./crossfit/crossfit.module').then( m => m.CrossfitPageModule)
-
   }
 
 ];

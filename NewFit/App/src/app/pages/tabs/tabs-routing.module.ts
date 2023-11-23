@@ -1,3 +1,4 @@
+import { CrosfitPageModule } from './subrutinas/crosfit/crosfit.module';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
@@ -29,7 +30,8 @@ const routes: Routes = [
   {
     path: 'antropometrico',
     loadChildren: () => import('./antropometrico/antropometrico.module').then( m => m.AntropometricoPageModule)
-  },  {
+  },
+  {
     path: 'estadisticas',
     loadChildren: () => import('./estadisticas/estadisticas.module').then( m => m.EstadisticasPageModule)
   },
