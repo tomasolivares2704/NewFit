@@ -15,13 +15,18 @@ const routes: Routes = [
   {
     path: 'crud-ver-ejercicio',
     loadChildren: () => import('./crud-ver-ejercicios/crud-ver-ejercicios.module').then( m => m.CrudVerEjerciciosPageModule)
-  },  {
+  },
+  {
     path: 'crosfit',
     loadChildren: () => import('./crosfit/crosfit.module').then( m => m.CrosfitPageModule)
   },
   {
     path: 'hit',
     loadChildren: () => import('./hit/hit.module').then( m => m.HitPageModule)
+
+    path: 'crossfit',
+    loadChildren: () => import('./crossfit/crossfit.module').then( m => m.CrossfitPageModule)
+
   }
 
 ];

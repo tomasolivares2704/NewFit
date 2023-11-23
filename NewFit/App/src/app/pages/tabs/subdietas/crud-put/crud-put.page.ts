@@ -23,6 +23,8 @@ export class CrudPutPage implements OnInit {
   user = {} as User;
   inputEnabled: boolean;
 
+  openCam: boolean = false;
+
   alimentosCreados: number = 0;
 
   constructor(
@@ -139,8 +141,8 @@ export class CrudPutPage implements OnInit {
   }
   
 
-
-  
-
+  openCamera() {
+    this.openCam = !this.openCam;
+  }
 
 }

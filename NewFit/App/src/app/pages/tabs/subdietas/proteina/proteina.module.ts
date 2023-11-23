@@ -8,7 +8,6 @@ import { ProteinaPageRoutingModule } from './proteina-routing.module';
 
 import { ProteinaPage } from './proteina.page';
 
-import { CrudService } from 'src/app/services/api/crud.service';
 import { SharedModule } from 'src/app/shared/shared.module';
 
 @NgModule({
