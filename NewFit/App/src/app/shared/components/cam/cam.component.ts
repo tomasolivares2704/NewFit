@@ -21,7 +21,7 @@ export class CamComponent  implements OnInit {
         quality: 90,
         allowEditing: false,
         resultType: CameraResultType.Uri,
-        source: CameraSource.Camera
+        source: CameraSource.Photos
       });
 
       if(image){

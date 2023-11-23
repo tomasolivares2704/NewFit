@@ -55,6 +55,7 @@ export class CrudListPage implements OnInit {
   inputEnabled: boolean;
   foodId: string;
 
+
   setModalState(isOpen: boolean) {
     this.isModalOpen = isOpen;
   }
@@ -191,17 +192,5 @@ export class CrudListPage implements OnInit {
 
     await alert.present();
   }
-
-
-
-
-
-
-
-
-
-
-
-
 
 }
