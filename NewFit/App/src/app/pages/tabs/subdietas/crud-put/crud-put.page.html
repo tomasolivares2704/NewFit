@@ -1,5 +1,5 @@
-<app-header backButton="../"></app-header>
-
+<app-header backButton="../" title="Crear Alimento">
+</app-header>
 
 <ion-content [fullscreen]="true">
   <ion-header collapse="condense">
@@ -12,9 +12,7 @@
 
     <form [formGroup]="foodForm" (ngSubmit)="createNewFood()">
 
-      <div>
-        <app-cam>Camara</app-cam>
-      </div>
+      <app-cam></app-cam>
 
       <ion-item>
         <ion-label position="floating" for="name">Nombre:</ion-label>

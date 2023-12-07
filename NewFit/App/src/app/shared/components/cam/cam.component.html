@@ -5,6 +5,12 @@
         Elegir Foto
       </ion-button>
     </ion-col>
-    <ion-col size="6"></ion-col>
   </ion-row>
 </ion-grid>
+
+
+<ion-list style="background-color: black;">
+  <ion-item *ngFor="let photo of photos">
+    <img [src]="photo" alt="">
+  </ion-item>
+</ion-list>

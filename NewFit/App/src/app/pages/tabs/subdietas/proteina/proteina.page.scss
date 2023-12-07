@@ -55,3 +55,25 @@ ion-content {
     }
   }
 }
+
+// Cards
+.difuminado {
+  position: relative;
+  overflow: hidden;
+}
+
+.difuminado::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 100%;
+  background: linear-gradient(to right, transparent 0%, black 100%);
+  transition: left 0.5s ease; /* Transición para suavizar el efecto */
+}
+
+.difuminado:hover::before {
+  left: -100%; /* Cambia la posición inicial a estar fuera del elemento */
+}
+
