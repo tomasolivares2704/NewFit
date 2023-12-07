@@ -1,6 +1,15 @@
-import { Component, OnInit } from '@angular/core';
-import { Camera, CameraResultType, CameraSource } from '@capacitor/camera';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Camera, CameraResultType, CameraSource, Photo } from '@capacitor/camera';
 import { Directory, FileInfo, Filesystem, ReaddirResult } from '@capacitor/filesystem';
+import { UtilsService } from 'src/app/services/utils.service';
+
+const IMAGE_DIR = 'stored-images';
+
+interface LocalFile {
+  name: string;
+  path: string;
+  data: string;
+}
 
 @Component({
   selector: 'app-cam',
@@ -12,12 +21,30 @@ export class CamComponent  implements OnInit {
   path: string = "TestImages";
   photos: string[] = [];
 
-  constructor() { }
+  @Output() imageSelected = new EventEmitter<string>();
+
+  constructor( private UtilSrv: UtilsService) { }
 
   ngOnInit() {
     Camera.requestPermissions();
     this.getPhotos();
   }
+  //CODIGO NUEVO
+
+  async selectImage() {
+    const image = await Camera.getPhoto({
+      quality: 98,
+      allowEditing: false,
+      resultType: CameraResultType.Base64,
+      source: CameraSource.Photos
+    });
+
+    if (image) {
+      this.imageSelected.emit(image.base64String!); // Emitir evento con la imagen seleccionada
+    }
+  }
+
+  // CODIGO VIEJO
 
   async takePhoto(){
       debugger;
@@ -34,11 +61,12 @@ export class CamComponent  implements OnInit {
 
   }
   async savePhoto(photo?: string) {
+    const fileName = new Date().getTime() + '.jpg';
+
     await Filesystem.writeFile({
-      path: this.path + '/Test.jpg',
+      path: `${IMAGE_DIR}/${fileName}`,
       data: photo,
       directory: Directory.Documents,
-      //encoding: Encoding.UTF8,
     });
   }
 

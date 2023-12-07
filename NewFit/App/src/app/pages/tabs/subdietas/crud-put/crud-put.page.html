@@ -1,5 +1,4 @@
-<app-header backButton="../" title="Crear Alimento">
-</app-header>
+<app-header backButton="../" title="Crear Alimento"></app-header>
 
 <ion-content [fullscreen]="true">
   <ion-header collapse="condense">
@@ -12,7 +11,7 @@
 
     <form [formGroup]="foodForm" (ngSubmit)="createNewFood()">
 
-      <app-cam></app-cam>
+      <app-cam (imageSelected)="onImageSelected($event)"></app-cam>
 
       <ion-item>
         <ion-label position="floating" for="name">Nombre:</ion-label>
@@ -38,10 +37,11 @@
         <ion-label for="protein">Proteínas:</ion-label>
         <ion-input type="text" formControlName="protein" id="protein"></ion-input>
       </ion-item>
-      <ion-item>
-        <ion-label for="img">Imagen:</ion-label>
-        <ion-input type="text" formControlName="img" id="img"></ion-input>
+      
+      <ion-item *ngIf="selectedImage">
+        <img [src]="selectedImage" alt="Imagen seleccionada" style="width: 200px; height: 300px;">
       </ion-item>
+      
       <ion-button expand="full" type="submit" [disabled]="foodForm.invalid">Crear Alimento</ion-button>
     </form>
   </ion-card>

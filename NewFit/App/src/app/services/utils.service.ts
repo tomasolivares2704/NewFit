@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AlertController, AlertOptions, LoadingController, LoadingOptions, ModalController, ModalOptions, ToastController, ToastOptions } from '@ionic/angular';
+import { Directory, FileInfo, Filesystem, ReaddirResult } from '@capacitor/filesystem';
 import { Router } from '@angular/router';
 import { Task } from 'src/app/models/task.models';
 
@@ -8,6 +9,8 @@ import { Task } from 'src/app/models/task.models';
 })
 export class UtilsService {
 
+  path: string = "TestImages";
+  photos: string[] = [];
   constructor(
     private loadingController: LoadingController,
     private router: Router,
@@ -83,4 +86,44 @@ export class UtilsService {
 
     return parseInt(percentage.toString());
   }
+
+  //Cámara y almacenamiento local
+
+  getPhotos() {
+    Filesystem.readdir(
+      {
+        path: this.path,
+        directory: Directory.Documents
+      }
+    ).then( files =>{
+      this.loadPhotos(files.files);
+
+    }).catch(err => {
+      console.log(err);
+      Filesystem.mkdir(
+        {
+          path: this.path,
+          directory: Directory.Documents
+        }
+      )
+    })
+  }
+
+  loadPhotos(photos: FileInfo[]) {
+    photos.forEach(file => {
+
+      Filesystem.readFile({
+        path: `${this.path}]/${file.name}`,
+        directory: Directory.Documents
+      }).then(photo => {
+        this.photos.push('data:image/jpeg;base64' + photo.data);
+      })
+    });
+  }
+
+  base64ToString(base64: string): string {
+    const decodedString = atob(base64); // Decodificar la cadena Base64
+    return decodedString;
+  }
+
 }
