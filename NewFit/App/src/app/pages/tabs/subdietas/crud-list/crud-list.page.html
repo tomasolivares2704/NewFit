@@ -1,5 +1,3 @@
-
-
 <ion-content [fullscreen]="true">
 
   <ion-grid>
@@ -7,7 +5,6 @@
       <ion-list>
 
         <ion-item *ngFor="let food of foods">
-      
           <ion-col size="4">
             <img style="width: 250px; height: auto;" src="{{ food.img }}" alt="{{ food.img }} Imagen">
           </ion-col>
@@ -42,7 +39,9 @@
         <ion-toolbar>
           <ion-title>Actualizar Comida</ion-title>
           <ion-buttons slot="end">
-            <ion-button (click)="setModalState(false)">Cerrar Modal</ion-button>
+            <ion-button (click)="setModalState(false)">
+              <ion-icon name="arrow-back-outline"></ion-icon>
+            </ion-button>
           </ion-buttons>
         </ion-toolbar>
       </ion-header>

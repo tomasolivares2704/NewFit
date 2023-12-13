@@ -7,6 +7,16 @@ ion-button{
     margin-bottom: 10%;
 }
 
+.atras{
+    --background: #222428; /* Color de fondo personalizado */
+    --color: white; /* Color del texto */
+    justify-content: center;
+    align-items: center;
+    --box-shadow: none; /* Elimina la sombra */
+    --border-radius: 0; /* Elimina el radio de borde */
+    --border-width: 0; /* Elimina el ancho del borde */
+}
+
 
 @media (min-width: 768px) {
     form{
@@ -38,4 +48,18 @@ img {
     height: auto;
     display: block;
     margin: auto;
+}
+
+ion-icon{
+    width: 30px;
+    height: 30px;
+}
+
+ion-item{
+    --background: #222428;
+    color: aliceblue;
+}
+
+ion-icon{
+    color: white
 }

@@ -110,8 +110,11 @@ ion-card-content p {
 
 /* Estilo para el encabezado */
 ion-header {
-  --ion-background-color: #ceff25;
-  color: #df1111;
+  --ion-background-color: #222428;
+}
+
+ion-header ion-title {
+  color: white; /* Color del texto del encabezado */
 }
 
 /* Estilo para el título en el encabezado */
