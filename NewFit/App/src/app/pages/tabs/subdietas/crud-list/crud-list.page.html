@@ -47,6 +47,7 @@
       </ion-header>
       <ion-content class="ion-padding">
 
+      <ion-card>
         <!-- FORMULARIO DE EDICIÓN -->
         <form [formGroup]="foodForm" (ngSubmit)="updateFood()">
 
@@ -54,10 +55,6 @@
             <!-- <p>{{foodId}}</p> -->
             <ion-label position="floating" for="name">Nombre:</ion-label>
             <ion-input type="text" formControlName="name" id="name"></ion-input>
-          </ion-item>
-          <ion-item>
-            <ion-label for="img">Imagen:</ion-label>
-            <ion-input type="text" formControlName="img" id="img"></ion-input>
           </ion-item>
           <ion-item>
             <ion-label for="calories">Calorías:</ion-label>
@@ -75,9 +72,22 @@
             <ion-label for="protein">Proteínas:</ion-label>
             <ion-input type="text" formControlName="protein" id="protein"></ion-input>
           </ion-item>
+
+          <ion-button (click)="takeImage()" expand="full" shape="round" class="image-button">
+            Seleccionar Imagen
+          </ion-button>
+    
+          <div class="image-container">
+            <ng-container *ngIf="foodForm.value.img">
+              <ion-item>
+                <img [src]="foodForm.value.img" class="food-image"/>
+              </ion-item>
+            </ng-container>
+          </div>
           
           <ion-button expand="full" type="submit" [disabled]="foodForm.invalid">Actualizar Alimento</ion-button>
         </form>
+      </ion-card>
 
       </ion-content>
     </ng-template>

@@ -92,6 +92,11 @@ export class CrudListPage implements OnInit {
     this.initForm();
   }
 
+  async takeImage() {
+    const dataUrl = (await this.utilsSvc.takePicture('Imagen del Alimento')).dataUrl;
+    this.foodForm.controls['img'].setValue(dataUrl);
+  }
+
   //Metodo Inicializar el Formulario Reactivo Angular
   initForm() {
     this.foodForm = this.formBuilder.group({

@@ -34,11 +34,17 @@ export class AntropometricoPage implements OnInit {
     'sexo': new FormControl('', [Validators.required]),
     'objetivo': new FormControl ('', [Validators.required]),
     'nivelActividad': new FormControl ('', [Validators.required]),
+    'image': new FormControl ('', [Validators.required]),
     });
 
 
   ngOnInit() {
     this.user = this.utilsSvc.getElementInLocalStorage('user');
+  }
+
+  async takeImage() {
+    const dataUrl = (await this.utilsSvc.takePicture('Imagen de Perfil')).dataUrl;
+    this.form.controls.image.setValue(dataUrl);
   }
 
   async saveData() {

@@ -7,7 +7,6 @@ import { AlertController } from '@ionic/angular';
 
 //Device Motion
 import { PluginListenerHandle } from '@capacitor/core';
-import { Motion } from '@capacitor/motion';
 
 
 /**
@@ -31,7 +30,6 @@ export class HomePage implements OnInit {
   constructor(
     private firebaseSrv: FirebaseService,
     private utilsSvc: UtilsService,
-    private alertController: AlertController,
   ) { }
 
   ngOnInit() {

@@ -40,7 +40,9 @@ ___
       <ion-grid>
         <ion-row>
           <ion-col size="6" style="margin: auto;">
-            <ion-icon name="person-circle-outline"></ion-icon>
+            <ion-avatar Style="margin: auto;" *ngIf="antropometrico.image">
+              <img  [src]="antropometrico.image" />
+            </ion-avatar><br>
             <h2>{{ user.name }}</h2>
             <p style="font-size: 10px;">{{ user.email }}</p>
           </ion-col>

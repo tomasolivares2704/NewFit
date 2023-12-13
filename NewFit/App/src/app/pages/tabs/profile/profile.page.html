@@ -1,7 +1,12 @@
 
 <ion-content class="ion-padding">
   <div class="profile-header ion-text-center">
-    <ion-icon name="accessibility-outline"></ion-icon>
+    <ion-avatar Style="margin: auto;" *ngIf="form.value.image">
+      <img [src]="form.value.image" />
+    </ion-avatar>
+    <ion-button (click)="takeImage()" [disabled]="!inputEnabled" shape="round">
+      Add Photo
+    </ion-button>
     <h2 class="profile-name">{{ user.name }}</h2>
     <div class="profile-email">{{ user.email }}</div>
   </div>

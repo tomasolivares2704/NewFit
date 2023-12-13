@@ -33,9 +33,15 @@ export class ProfilePage implements OnInit {
     'sexo': new FormControl('', [Validators.required]),
     'objetivo': new FormControl ('', [Validators.required]),
     'nivelActividad': new FormControl ('', [Validators.required]),
+    'image': new FormControl ('', [Validators.required]),
     });
 
   ngOnInit() {
+  }
+
+  async takeImage() {
+    const dataUrl = (await this.utilsSvc.takePicture('Imagen de Perfil')).dataUrl;
+    this.form.controls.image.setValue(dataUrl);
   }
 
   ionViewWillEnter() {
@@ -110,8 +116,9 @@ export class ProfilePage implements OnInit {
      let estatura = this.antropometrico.estatura;
      let peso = this.antropometrico.peso;
      let objetivo = this.antropometrico.objetivo;
+     let image = this.antropometrico.image;
  
-     this.firebaseSrv.updateDocument(path, {nivelActividad, estatura, peso, objetivo})
+     this.firebaseSrv.updateDocument(path, {nivelActividad, estatura, peso, objetivo, image})
        .then(() => {
          this.inputEnabled = false; // Desactiva la edición
        })

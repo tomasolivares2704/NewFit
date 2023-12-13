@@ -7,6 +7,13 @@
     <ion-card>
       <form (keyup.enter)="saveData()" (ngSubmit)="saveData()" class="ion-text-center">
 
+        <ion-avatar *ngIf="form.value.image">
+          <img [src]="form.value.image" />
+        </ion-avatar>
+        <ion-button (click)="takeImage()" shape="round">
+          Add Photo
+        </ion-button>
+
         <app-custom-input [control]="form.controls.edad" type="number" label="Edad" icon="people-outline"></app-custom-input>
         <div class="validators" *ngIf="form.controls.edad.errors && form.controls.edad.dirty">
           <div *ngIf="form.controls.edad.errors?.['required']">Ingresa tu edad</div>
