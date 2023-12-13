@@ -3,8 +3,7 @@ import { User } from 'src/app/models/user.models';
 import { exercices } from 'src/app/models/exercices.models';
 import { UtilsService } from 'src/app/services/utils.service';
 import { FirebaseService } from 'src/app/services/firebase.service';
-import { FormGroup,  FormBuilder } from '@angular/forms';
-import { AlertController } from '@ionic/angular';
+import { FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-crosfit',
