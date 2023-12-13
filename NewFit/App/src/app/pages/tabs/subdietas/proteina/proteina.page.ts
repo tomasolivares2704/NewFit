@@ -61,39 +61,12 @@ export class ProteinaPage implements OnInit {
   ngOnInit() {
     this.getUser();
     this.getFoods();
-    this.initForm();
-    
-  }
-  //Optener Valores
-  initForm() {
-    this.foodForm = this.formBuilder.group({
-      name: ['', Validators.required],
-      calories: ['', Validators.required],
-      carbs: ['', Validators.required],
-      fats: ['', Validators.required],
-      protein: ['', Validators.required],
-      img: ['', Validators.required]
-    });
   }
 
   //Funcion para Obtener al Usuario
   getUser() {
     return this.user = this.utilsSvc.getElementInLocalStorage('user');
   }
-
-  //Funcion para Obtener Foods
-  //getFoods(){
-    //let user: User = this.utilsSvc.getElementInLocalStorage('user')
-    //let path = `user/${user.uid}`;
-    //let sub = this.firebaseSrv.getSubcollection(path, 'foods').subscribe({
-      //next: (res: Foods[]) => {
-        //console.log(res);
-        //this.foods = res
-        //sub.unsubscribe()
-        
-      //}
-    //})
-  //}
 
   getFoods() {
     let user: User = this.utilsSvc.getElementInLocalStorage('user');
@@ -122,42 +95,5 @@ export class ProteinaPage implements OnInit {
         food.calories <= 380   
          );
   }
-  
-
-  
-  
-  
-    updateFood(id: string) {
-      console.log("ID del alimento en la función updateFood:", id);
-      console.log("selectedFoodId:", this.selectedFoodId);
-  
-      const updatedFoodData = {
-        calories: this.foodForm.value.calories,
-        carbs: this.foodForm.value.carbs,
-        fats: this.foodForm.value.fats,
-        name: this.foodForm.value.name,
-        protein: this.foodForm.value.protein,
-        img: this.foodForm.value.img.toString(),
-
-      };
-  
-    const path = `user/${this.user.uid}/foods/${id}`;
-  
-    this.firebaseSrv.updateDocument(path, updatedFoodData)
-      .then(() => {
-        console.log('Alimento actualizado correctamente.');
-        this.foodForm.reset(); // Limpiar el formulario después de actualizar el alimento
-        this.inputEnabled = false; // Desactiva la edición
-      })
-      .catch(error => {
-        console.error('Error al actualizar el alimento:', error);
-        // Manejo de errores si es necesario
-      });
-  }
-
-
-
-
-
 
 }

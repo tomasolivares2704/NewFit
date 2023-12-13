@@ -6,6 +6,8 @@ import { UtilsService } from 'src/app/services/utils.service';
 
 import { User } from 'src/app/models/user.models';
 import { exercices } from 'src/app/models/exercices.models';
+import { Router } from '@angular/router';
+
 
 
 @Component({
@@ -15,8 +17,6 @@ import { exercices } from 'src/app/models/exercices.models';
 })
 export class CrudCrearEjercicioPage implements OnInit {
 
-  exerciceForm: FormGroup;
-
   user = {} as User;
   exercices = {} as exercices;
   inputEnabled: boolean;
@@ -24,10 +24,16 @@ export class CrudCrearEjercicioPage implements OnInit {
   constructor(
     private firebaseSrv: FirebaseService,
     private utilsSvc: UtilsService,
+    private router: Router,
   ) { }
 
   ngOnInit() {
     this.getUser();
+  }
+
+  async takeImage() {
+    const dataUrl = (await this.utilsSvc.takePicture('Imagen del Ejercicio')).dataUrl;
+    this.form.controls.img_exercice.setValue(dataUrl);
   }
 
   getUser() {
@@ -65,7 +71,9 @@ export class CrudCrearEjercicioPage implements OnInit {
     this.firebaseSrv.addToSubcollection(path, 'exercices', this.form.value)
     .then(() => {
       console.log('Nuevo ejercicio añadido correctamente.');
-      this.exerciceForm.reset(); // Limpiar el formulario después de agregar el alimento
+      this.form.reset(); // Limpiar el formulario después de agregar el alimento
+
+      this.router.navigate(['/tabs/subrutinas/crud-ver-ejercicio']);
     })
     .catch(error => {
       console.error('Error al añadir el nuevo ejercicio', error);

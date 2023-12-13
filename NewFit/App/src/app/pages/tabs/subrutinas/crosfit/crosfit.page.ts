@@ -3,7 +3,7 @@ import { User } from 'src/app/models/user.models';
 import { exercices } from 'src/app/models/exercices.models';
 import { UtilsService } from 'src/app/services/utils.service';
 import { FirebaseService } from 'src/app/services/firebase.service';
-import { FormGroup, Validators, FormBuilder } from '@angular/forms';
+import { FormGroup,  FormBuilder } from '@angular/forms';
 import { AlertController } from '@ionic/angular';
 
 @Component({
@@ -23,8 +23,6 @@ export class CrosfitPage implements OnInit {
   constructor(
     private firebaseSrv: FirebaseService,
     private utilsSvc: UtilsService,
-    private formBuilder: FormBuilder,
-    private alertController: AlertController,
   ) { }
 
   ngOnInit() {
