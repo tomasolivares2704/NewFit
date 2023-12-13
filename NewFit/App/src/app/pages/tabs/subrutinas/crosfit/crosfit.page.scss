@@ -1,58 +1,85 @@
 /* proteina.page.scss */
 
 ion-content {
+  position: relative;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.9); /* Ajusta el valor de alfa para cambiar la opacidad */
+    z-index: 0;
+  }
+
+  .food-card {
+    margin: 10px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    color: #fff;
+    background-size: cover;
+    background-position: center;
+    text-transform: uppercase;
     position: relative;
-  
-    &::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: rgba(0, 0, 0, 0.9); /* Ajusta el valor de alfa para cambiar la opacidad */
-      z-index: 0;
-    }
-  
-    .food-card {
-      margin: 10px;
-      border-radius: 10px;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-      overflow: hidden;
-      color: #333;
-      background-size: cover;
-      background-position: center;
-      text-transform: uppercase;
-      position: relative;
-  
-      ion-card-header {
-        h2.food-name {
-          font-size: 1.5em;
-          font-weight: bold;
-          text-align: right;
-          color: #333;
-        }
-        ion-icon.icon {
-          font-size: 1.5em;
-          margin-right: 3px;
-        }
+
+    ion-card-header {
+      h2.food-name {
+        font-size: 1.5em;
+        font-weight: bold;
+        text-align: right;
+        color: #fff;
       }
-  
-      ion-card-content {
-        position: relative;
-  
-        p.food-nutrient {
-          font-size: 1.1em;
-          margin: 5px 0;
-          color: #333;
-          text-align: right;
-        }
-  
-        ion-icon.icon {
-          font-size: 1.2em;
-          margin-right: 5px;
-        }
+      ion-icon.icon {
+        font-size: 1.5em;
+        margin-right: 3px;
+      }
+    }
+
+    ion-card-content {
+      position: relative;
+
+      p.food-nutrient {
+        font-size: 1.1em;
+        margin: 5px 0;
+        color: #fff;
+        text-align: right;
+      }
+
+      ion-icon.icon {
+        font-size: 1.2em;
+        margin-right: 5px;
+      }
+
+      img.food-image {
+        width: 100%;
+        max-height: 120px; /* Ajusta el valor según tus necesidades */
+        object-fit: cover; /* Ajusta el método de ajuste de la imagen */
       }
     }
   }
+}
+
+// Cards
+.difuminado {
+  position: relative;
+  overflow: hidden;
+}
+
+.difuminado::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 100%;
+  background: linear-gradient(to right, transparent 0%, black 100%);
+  transition: left 0.5s ease; /* Transición para suavizar el efecto */
   
+}
+
+.difuminado:hover::before {
+  left: -100%; /* Cambia la posición inicial a estar fuera del elemento */
+}

@@ -6,8 +6,8 @@
 
         <!-- Lista de ejercicios -->
         <ion-item *ngFor="let exercice of exercices">
-          <ion-col size="2">
-            <img style="max-width: 200px; height: auto;" src="{{ exercice.img_exercice }}" alt="{{ exercice.img_exercice }} Imagen">
+          <ion-col size="1">
+            <img style="max-width: 100px; height: auto;" src="{{ exercice.img_exercice }}" alt="{{ exercice.img_exercice }} Imagen">
           </ion-col>
           
           <ion-col size="3">
@@ -58,6 +58,34 @@
             <ion-item>
               <ion-label position="floating" for="name">Nombre: </ion-label>
               <ion-input type="text" formControlName="name" id="name"></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-label position="floating" for="name">Clase Ejercicio: </ion-label>
+              <ion-input type="text" formControlName="class_exercice" id="class_exercice"></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-label position="floating" for="name">Nivel Expertis: </ion-label>
+              <ion-input type="text" formControlName="expertis_exercice" id="expertis_exercice"></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-label position="floating" for="name">Imagen: </ion-label>
+              <ion-input type="text" formControlName="img_exercice" id="img_exercice"></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-label position="floating" for="name">Descripción: </ion-label>
+              <ion-input type="text" formControlName="description_exercice" id="description_exercice"></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-label position="floating" for="name">Principiante: </ion-label>
+              <ion-input type="text" formControlName="beginer_exercice" id="beginer_exercice"></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-label position="floating" for="name">Intermedio: </ion-label>
+              <ion-input type="text" formControlName="inter_exercice" id="inter_exercice"></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-label position="floating" for="name">Avanzado: </ion-label>
+              <ion-input type="text" formControlName="expert_exercice" id="expert_exercice"></ion-input>
             </ion-item>
 
             <!-- Otros campos del formulario -->

@@ -27,7 +27,11 @@ const routes: Routes = [
   {
     path: 'crossfit',
     loadChildren: () => import('./crossfit/crossfit.module').then( m => m.CrossfitPageModule)
+  },  {
+    path: 'crud-list-ejercicios',
+    loadChildren: () => import('./crud-list-ejercicios/crud-list-ejercicios.module').then( m => m.CrudListEjerciciosPageModule)
   }
+
 
 ];
 
