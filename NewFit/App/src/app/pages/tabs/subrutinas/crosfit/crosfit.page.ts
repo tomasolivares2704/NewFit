@@ -14,6 +14,7 @@ export class CrosfitPage implements OnInit {
 
   exercices: exercices[] = [];
   user = {} as User;
+  filteredExercices: exercices[] = [];
   isModalOpen = false;
   inputEnabled: boolean;
   exerciceId: string;
@@ -39,7 +40,19 @@ export class CrosfitPage implements OnInit {
       next: (res: exercices[]) => {
         console.log(res);
         this.exercices = res;
+
+        // Filtrar ejercicios por CROSSFIT
+        this.filteredExercices = this.filterExercicesByCrossfit(this.exercices);
       }
     });
   }
+
+  // Filtrar Ejercicios por CROSSFIT
+  filterExercicesByCrossfit(exercices: exercices[]): exercices[] {
+    return exercices.filter(
+      (exercise) =>
+        exercise.class_exercice.toUpperCase() === 'CROSSFIT'
+    );
+  }
 }
+

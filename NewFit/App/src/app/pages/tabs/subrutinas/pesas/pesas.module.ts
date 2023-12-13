@@ -7,13 +7,15 @@ import { IonicModule } from '@ionic/angular';
 import { PesasPageRoutingModule } from './pesas-routing.module';
 
 import { PesasPage } from './pesas.page';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    PesasPageRoutingModule
+    PesasPageRoutingModule,
+    SharedModule,
   ],
   declarations: [PesasPage]
 })
