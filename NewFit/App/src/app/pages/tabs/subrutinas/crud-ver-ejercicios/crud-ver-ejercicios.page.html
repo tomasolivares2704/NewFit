@@ -41,7 +41,6 @@
     <ng-template>
       <ion-header>
         <ion-toolbar>
-          <h2>Actualizar Ejercicio</h2>
           <ion-buttons slot="end">
             <ion-button (click)="setModalState(false)">
               <ion-icon slot="end" name="arrow-undo-outline"></ion-icon>
@@ -50,9 +49,9 @@
         </ion-toolbar>
       </ion-header>
       <ion-content class="ion-padding">
-=======
           <!--FORMULARIO DE EDICIÓN-->
           <ion-card>
+
             <form [formGroup]="form" (ngSubmit)="updateExercice()">
 
               <app-custom-input [control]="form.controls.name" type="string" label="Nombre de Ejercicio"></app-custom-input>
@@ -104,7 +103,7 @@
 
               <ion-button expand="full" type="submit" [disabled]="form.invalid">Actualizar Ejercicio</ion-button>
             </form>
->>>>>>> Stashed changes
+
         </ion-card>
       </ion-content>
     </ng-template>
