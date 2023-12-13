@@ -1,8 +1,12 @@
-<ion-content>
-  <!-- Contenido de la página Hola, Estos Son Ejercicios Tipo Crossfit </h1> -->
+<ion-toolbar>
+  <app-header></app-header>
+</ion-toolbar>
 
-  <ion-card *ngFor="let exercise of exercices" class="food-card difuminado" [ngStyle]="{'background-image': 'url(' + exercise.img_exercice + ')'}">
-    <!-- Se corrigió el nombre de la propiedad de la imagen (img_exercice) según el modelo -->
+<ion-content>
+<!-- Contenido de la página Hola, Estos Son Ejercicios Tipo Crossfit </h1> -->
+
+<ion-card *ngFor="let exercise of exercices" class="food-card difuminado" [ngStyle]="{'background-image': 'url(' + exercise.img_exercice + ')'}">
+  <!-- Se corrigió el nombre de la propiedad de la imagen (img_exercice) según el modelo -->
 
     <ion-card-header>
       <h2 class="food-name">{{ exercise.name }}</h2>
