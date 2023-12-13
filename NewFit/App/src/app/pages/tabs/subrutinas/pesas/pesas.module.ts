@@ -4,19 +4,17 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { HitPageRoutingModule } from './hit-routing.module';
+import { PesasPageRoutingModule } from './pesas-routing.module';
 
-import { HitPage } from './hit.page';
-import { SharedModule } from 'src/app/shared/shared.module';
+import { PesasPage } from './pesas.page';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    HitPageRoutingModule,
-    SharedModule,
+    PesasPageRoutingModule
   ],
-  declarations: [HitPage]
+  declarations: [PesasPage]
 })
-export class HitPageModule {}
+export class PesasPageModule {}
