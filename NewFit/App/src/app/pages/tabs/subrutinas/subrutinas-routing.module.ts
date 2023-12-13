@@ -30,6 +30,10 @@ const routes: Routes = [
   },  {
     path: 'crud-list-ejercicios',
     loadChildren: () => import('./crud-list-ejercicios/crud-list-ejercicios.module').then( m => m.CrudListEjerciciosPageModule)
+  },
+  {
+    path: 'pesas',
+    loadChildren: () => import('./pesas/pesas.module').then( m => m.PesasPageModule)
   }
 
 

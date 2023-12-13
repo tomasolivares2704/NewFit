@@ -1,11 +1,9 @@
-<!-- proteina.page.html -->
+
 
 <ion-content>
   <!-- Contenido de la página -->
-  <h1>Hola, Estos Son Alimentos Hipercalórico</h1>
 
-
-  <ion-card *ngFor="let food of foodHipoList" class="food-card" [ngStyle]="{'background-image': 'url(' + food.img + ')'}">
+  <ion-card *ngFor="let food of foodHipoList" class="food-card difuminado" [ngStyle]="{'background-image': 'url(' + food.img + ')'}">
   
     <ion-card-header>
       <h2 class="food-name">{{ food.name }}</h2>
