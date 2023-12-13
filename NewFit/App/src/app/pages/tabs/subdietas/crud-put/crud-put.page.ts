@@ -151,12 +151,4 @@ export class CrudPutPage implements OnInit {
         console.error('Error al actualizar el alimento:', error);
       });
   }
-
-  openCamera() {
-    this.openCam = !this.openCam;
-  }
-
-  onImageSelected(image: string) {
-    this.selectedImage = 'data:image/jpeg;base64,' + image;
-  }
 }
