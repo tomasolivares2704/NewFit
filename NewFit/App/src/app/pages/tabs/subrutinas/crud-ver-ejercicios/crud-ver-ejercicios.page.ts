@@ -3,7 +3,7 @@ import { User } from 'src/app/models/user.models';
 import { exercices } from 'src/app/models/exercices.models';
 import { UtilsService } from 'src/app/services/utils.service';
 import { FirebaseService } from 'src/app/services/firebase.service';
-import { FormGroup, Validators, FormBuilder } from '@angular/forms';
+import { FormGroup, Validators, FormControl} from '@angular/forms';
 import { AlertController } from '@ionic/angular';
 
 @Component({
@@ -18,19 +18,18 @@ export class CrudVerEjerciciosPage implements OnInit {
   isModalOpen = false;
   inputEnabled: boolean;
   exerciceId: string;
-  exerciceForm: FormGroup;
 
   setModalState(isOpen: boolean) {
     this.isModalOpen = isOpen;
   }
 
-  // Funcion para Cargar los datos al formulario ExerciceForm
+  // Funcion para Cargar los datos al formulario form
   loadExerciceData(id: string) {
     // Busca el ejercicio correspondiente por su ID
     let exercice = this.exercices.find(f => f.id === id);
     if (exercice) {
       // Actualiza el formulario con los datos del ejercicio
-      this.exerciceForm.patchValue({
+      this.form.patchValue({
         name: exercice.name,
         class_exercice: exercice.class_exercice,
         expertis_exercice: exercice.expertis_exercice,
@@ -48,28 +47,30 @@ export class CrudVerEjerciciosPage implements OnInit {
   constructor(
     private firebaseSrv: FirebaseService,
     private utilsSvc: UtilsService,
-    private formBuilder: FormBuilder,
     private alertController: AlertController,
   ) { }
 
   ngOnInit() {
     this.getUser();
     this.getExercices();
-    this.initForm();
   }
 
-  initForm() {
-    this.exerciceForm = this.formBuilder.group({
-      'name': ['', [Validators.required]],
-      'class_exercice': ['', [Validators.required]],
-      'expertis_exercice': ['', [Validators.required]],
-      'img_exercice': ['', [Validators.required]],
-      'description_exercice': ['', [Validators.required]],
-      'beginer_exercice': ['', [Validators.required]],
-      'inter_exercice': ['', [Validators.required]],
-      'expert_exercice': ['', [Validators.required]],
-    })
+  async takeImage() {
+    const dataUrl = (await this.utilsSvc.takePicture('Imagen del Ejercicio')).dataUrl;
+    this.form.controls['img_exercice'].setValue(dataUrl);
   }
+
+  form = new FormGroup({
+    'name': new FormControl ('', [Validators.required]),
+    'class_exercice': new FormControl ('', [Validators.required]),
+    'expertis_exercice': new FormControl ('', [Validators.required]),
+    'img_exercice': new FormControl ('', [Validators.required]),
+    'description_exercice': new FormControl ('', [Validators.required]),
+    'beginer_exercice': new FormControl ('', [Validators.required]),
+    'inter_exercice': new FormControl ('', [Validators.required]),
+    'expert_exercice': new FormControl ('', [Validators.required]),
+  });
+
 
   // Funcion para Obtener al Usuario
   getUser() {
@@ -98,14 +99,14 @@ export class CrudVerEjerciciosPage implements OnInit {
 
     // Crea Objeto
     const updatedExerciceData = {
-      name: this.exerciceForm.value.name.toString(),
-      class_exercice: this.exerciceForm.value.class_exercice.toString(),
-      expertis_exercice: this.exerciceForm.value.expertis_exercice.toString(),
-      img_exercice: this.exerciceForm.value.img_exercice.toString(),
-      description_exercice: this.exerciceForm.value.description_exercice.toString(),
-      beginer_exercice: this.exerciceForm.value.beginer_exercice.toString(),
-      inter_exercice: this.exerciceForm.value.inter_exercice.toString(),
-      expert_exercice: this.exerciceForm.value.expert_exercice.toString(),
+      name: this.form.value.name.toString(),
+      class_exercice: this.form.value.class_exercice.toString(),
+      expertis_exercice: this.form.value.expertis_exercice.toString(),
+      img_exercice: this.form.value.img_exercice.toString(),
+      description_exercice: this.form.value.description_exercice.toString(),
+      beginer_exercice: this.form.value.beginer_exercice.toString(),
+      inter_exercice: this.form.value.inter_exercice.toString(),
+      expert_exercice: this.form.value.expert_exercice.toString(),
     };
 
     // Construye la Ruta
@@ -116,7 +117,7 @@ export class CrudVerEjerciciosPage implements OnInit {
     this.firebaseSrv.updateDocument(path, updatedExerciceData)
       .then(() => {
         console.log('Ejercicio actualizado correctamente.');
-        this.exerciceForm.reset(); // Limpiar el formulario después de actualizar el ejercicio
+        this.form.reset(); // Limpiar el formulario después de actualizar el ejercicio
         this.inputEnabled = false; // Desactiva la edición
 
         window.location.reload();

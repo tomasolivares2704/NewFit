@@ -43,7 +43,7 @@ export class CrudPutPage implements OnInit {
   }
 
   async takeImage() {
-    const dataUrl = (await this.utilsSvc.takePicture('Imagen del Producto')).dataUrl;
+    const dataUrl = (await this.utilsSvc.takePicture('Imagen del Alimento')).dataUrl;
     this.foodForm.controls['img'].setValue(dataUrl);
   }
 
@@ -144,14 +144,5 @@ export class CrudPutPage implements OnInit {
         console.error('Error al actualizar el alimento:', error);
         // Manejo de errores si es necesario
       });
-  }
-  
-
-  openCamera() {
-    this.openCam = !this.openCam;
-  }
-
-  onImageSelected(image: string) {
-    this.selectedImage = 'data:image/jpeg;base64,' + image;
   }
 }

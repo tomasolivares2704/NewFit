@@ -25,11 +25,6 @@
         <div *ngIf="form.controls.expertis_exercice.errors?.['required']">Ingresa la disciplina a la cual pertenece el ejercicio</div>
       </div>
 
-      <app-custom-input [control]="form.controls.img_exercice" type="string" label="Imagen"></app-custom-input>
-      <div class="validators" *ngIf="form.controls.img_exercice.errors && form.controls.img_exercice.dirty">
-        <div *ngIf="form.controls.img_exercice.errors?.['required']">Ingresa una imagen al ejercicio</div>
-      </div>
-
       <app-custom-input [control]="form.controls.description_exercice" type="string" label="Descripción"></app-custom-input>
       <div class="validators" *ngIf="form.controls.description_exercice.errors && form.controls.description_exercice.dirty">
         <div *ngIf="form.controls.description_exercice.errors?.['required']">Añade una descripción al ejercicio</div>
@@ -48,6 +43,18 @@
       <app-custom-input [control]="form.controls.expert_exercice" type="string" label="Progresión avanzada"></app-custom-input>
       <div class="validators" *ngIf="form.controls.expert_exercice.errors && form.controls.expert_exercice.dirty">
         <div *ngIf="form.controls.expert_exercice.errors?.['required']">Ingresa el ejercicio para avanzados</div>
+      </div>
+
+      <ion-button (click)="takeImage()" expand="full" shape="round" class="image-button">
+        Seleccionar Imagen
+      </ion-button>
+
+      <div class="image-container">
+        <ng-container *ngIf="form.value.img_exercice">
+          <ion-item>
+            <img [src]="form.value.img_exercice"/>
+          </ion-item>
+        </ng-container>
       </div>
 
       <ion-button class="ion-margin-vertical" [disabled]="form.invalid" type="submit" shape="round" expand="full">

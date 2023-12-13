@@ -1,12 +1,12 @@
-import { Component, OnInit, Input} from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { Component, OnInit, Input } from '@angular/core';
+import { FormControl, AbstractControl } from '@angular/forms';
 
 @Component({
   selector: 'app-custom-input',
   templateUrl: './custom-input.component.html',
   styleUrls: ['./custom-input.component.scss'],
 })
-export class CustomInputComponent  implements OnInit {
+export class CustomInputComponent implements OnInit {
 
   @Input() control: FormControl;
   @Input() label: string;
@@ -20,16 +20,19 @@ export class CustomInputComponent  implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    if(this.type === 'password') this.isPassword = true; 
+    this.isPassword = this.type === 'password';
+  }
+
+  isFormControl(): boolean {
+    return this.control instanceof FormControl;
+  }
+
+  isTextArea(): boolean {
+    return this.type === 'textarea';
   }
 
   showOrHidePassword() {
-    this.hide =!this.hide;
-    if(this.hide) {
-      this.type = 'password';
-    }else{
-      this.type = 'text';
-    }
+    this.hide = !this.hide;
+    this.type = this.hide ? 'password' : 'text';
   }
-
 }
