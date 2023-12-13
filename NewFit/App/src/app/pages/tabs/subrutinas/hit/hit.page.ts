@@ -14,6 +14,7 @@ import { AlertController } from '@ionic/angular';
 export class HitPage implements OnInit {
 
   exercices: exercices[] = [];
+  filteredExercices: exercices[] = [];
   user = {} as User;
   isModalOpen = false;
   inputEnabled: boolean;
@@ -42,8 +43,19 @@ export class HitPage implements OnInit {
       next: (res: exercices[]) => {
         console.log(res);
         this.exercices = res;
+
+        // Filtrar ejercicios por CROSSFIT
+        this.filteredExercices = this.filterExercicesByCrossfit(this.exercices);
       }
     });
+  }
+
+  // Filtrar Ejercicios por CROSSFIT
+  filterExercicesByCrossfit(exercices: exercices[]): exercices[] {
+    return exercices.filter(
+      (exercise) =>
+        exercise.class_exercice.toUpperCase() === 'HIIT'
+    );
   }
 }
 

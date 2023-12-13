@@ -1,12 +1,8 @@
-<ion-toolbar>
-  <app-header></app-header>
-</ion-toolbar>
-
 <ion-content>
-<!-- Contenido de la página Hola, Estos Son Ejercicios Tipo Crossfit </h1> -->
+  <!-- Contenido de la página Hola, Estos Son Ejercicios Tipo Crossfit </h1> -->
 
-<ion-card *ngFor="let exercise of exercices" class="food-card difuminado" [ngStyle]="{'background-image': 'url(' + exercise.img_exercice + ')'}">
-  <!-- Se corrigió el nombre de la propiedad de la imagen (img_exercice) según el modelo -->
+  <ion-card *ngFor="let exercise of filteredExercices" class="food-card difuminado" [ngStyle]="{'background-image': 'url(' + exercise.img_exercice + ')'}">
+    <!-- Se corrigió el nombre de la propiedad de la imagen (img_exercice) según el modelo -->
 
     <ion-card-header>
       <h2 class="food-name">{{ exercise.name }}</h2>
@@ -15,13 +11,13 @@
 
     <ion-card-content>
       <p class="food-nutrient">
-        <ion-icon name="fitness" class="icon"></ion-icon> Tipo: {{ exercise.class_exercice }}
+        <ion-icon name="fitness" class="icon"></ion-icon> Rutina Básica: {{ exercise.beginer_exercice }}
       </p>
       <p class="food-nutrient">
         <ion-icon name="flame" class="icon"></ion-icon> Rutina Intermedia: {{ exercise.inter_exercice }}
       </p>
       <p class="food-nutrient">
-        <ion-icon name="color-fill" class="icon"></ion-icon> Rutina Avanzada: {{ exercise.beginer_exercice }}
+        <ion-icon name="color-fill" class="icon"></ion-icon> Rutina Avanzada: {{ exercise.expert_exercice }}
       </p>
     </ion-card-content>
   </ion-card>

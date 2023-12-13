@@ -24,6 +24,10 @@ const routes: Routes = [
     path: 'hit',
     loadChildren: () => import('./hit/hit.module').then( m => m.HitPageModule)
   },
+  {
+    path: 'pesas',
+    loadChildren: () => import('./pesas/pesas.module').then( m => m.PesasPageModule)
+  },
 ];
 
 @NgModule({
