@@ -35,12 +35,20 @@
         <ion-label for="protein">Proteínas:</ion-label>
         <ion-input type="text" formControlName="protein" id="protein"></ion-input>
       </ion-item>
+
+      <ion-button (click)="takeImage()" expand="full" shape="round" class="image-button">
+        Seleccionar Imagen
+      </ion-button>
+
+      <div class="image-container">
+        <ng-container *ngIf="foodForm.value.img">
+          <ion-item>
+            <img [src]="foodForm.value.img" class="food-image"/>
+          </ion-item>
+        </ng-container>
+      </div>
       
-      <ion-item *ngIf="selectedImage">
-        <img [src]="selectedImage" alt="Imagen seleccionada" style="width: 200px; height: 300px;">
-      </ion-item>
-      
-      <ion-button expand="full" type="submit" [disabled]="foodForm.invalid">Crear Alimento</ion-button>
+      <ion-button expand="full" shape="round" type="submit" [disabled]="foodForm.invalid">Crear Alimento</ion-button>
     </form>
   </ion-card>
 </ion-content>

@@ -3,7 +3,6 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { FirebaseService } from 'src/app/services/firebase.service';
 import { UtilsService } from 'src/app/services/utils.service';
-import { AngularFireStorage } from '@angular/fire/compat/storage';
 
 import { User } from 'src/app/models/user.models';
 import { Foods } from 'src/app/models/food.models';
@@ -19,6 +18,7 @@ export class CrudPutPage implements OnInit {
 
   foodForm: FormGroup;
   
+  
   foods: Foods[] = [];
   user = {} as User;
   inputEnabled: boolean;
@@ -30,7 +30,6 @@ export class CrudPutPage implements OnInit {
 
   constructor(
     private firebaseSrv: FirebaseService,
-    private afStorage: AngularFireStorage,
     private utilsSvc: UtilsService,
     private formBuilder: FormBuilder,
     private alertController: AlertController,
@@ -43,6 +42,11 @@ export class CrudPutPage implements OnInit {
     this.initForm();
   }
 
+  async takeImage() {
+    const dataUrl = (await this.utilsSvc.takePicture('Imagen del Producto')).dataUrl;
+    this.foodForm.controls['img'].setValue(dataUrl);
+  }
+
   initForm() {
     this.foodForm = this.formBuilder.group({
       name: ['', Validators.required],
@@ -50,7 +54,7 @@ export class CrudPutPage implements OnInit {
       carbs: ['', Validators.required],
       fats: ['', Validators.required],
       protein: ['', Validators.required],
-      imageFile: ['', Validators.required],
+      img: ['', Validators.required],
     });
   }
 
@@ -66,10 +70,10 @@ export class CrudPutPage implements OnInit {
         console.log(res);
         this.foods = res
         sub.unsubscribe()
+        
       }
     })
   }
-
   async createNewFood() {
     const newFoodData = {
       calories: this.foodForm.value.calories.toString(),
@@ -77,59 +81,48 @@ export class CrudPutPage implements OnInit {
       fats: this.foodForm.value.fats.toString(),
       name: this.foodForm.value.name,
       protein: this.foodForm.value.protein.toString(),
+      img: this.foodForm.value.img.toString(),
     };
-
+  
     const path = `user/${this.user.uid}`;
-
+  
     try {
-      const imageFile = this.foodForm.value.imageFile;
-
-      if (imageFile) {
-        await this.uploadImage(imageFile, path, newFoodData);
-
-        console.log('Nuevo alimento añadido correctamente.');
-        this.foodForm.reset();
-
-        const alert = await this.alertController.create({
-          header: 'Nuevo alimento',
-          message: 'Se ha agregado el nuevo alimento correctamente.',
-          buttons: [
-            {
-              text: 'Aceptar',
-              handler: () => {
-                this.router.navigate(['/tabs/subdietas/crud-list']);
-              }
+      await this.firebaseSrv.addToSubcollection(path, 'foods', newFoodData);
+      console.log('Nuevo alimento añadido correctamente.');
+      this.incrementarAlimentosCreados(); //Incrementa el contador
+      this.foodForm.reset(); // Limpiar el formulario después de agregar el alimento
+      
+  
+      // Mostrar una alerta que indica que se ha agregado el nuevo alimento
+      const alert = await this.alertController.create({
+        header: 'Nuevo alimento',
+        message: 'Se ha agregado el nuevo alimento correctamente.',
+        buttons: [
+          {
+            text: 'Aceptar',
+            handler: () => {
+              // Redirigir a otra vista después de hacer clic en 'Aceptar'
+              this.router.navigate(['/tabs/subdietas/crud-list']); // Reemplaza 'otra-ruta' con la ruta a la que deseas redirigir
             }
-          ],
-        });
-
-        await alert.present();
-      } else {
-        console.error('No se ha seleccionado ninguna imagen.');
-      }
+          }
+        ],
+      });
+  
+      await alert.present();
     } catch (error) {
       console.error('Error al añadir el nuevo alimento:', error);
+      // Manejo de errores si es necesario
     }
   }
-
-  async uploadImage(file: File, path: string, foodData: any): Promise<void> {
-    try {
-      const filePath = `images/${new Date().getTime()}_${file.name}`;
-      const ref = this.afStorage.ref(filePath);
-      await ref.put(file);
-
-      await this.firebaseSrv.addToSubcollection(path, 'foods', foodData);
-    } catch (error) {
-      console.error('Error al subir la imagen o agregar los datos:', error);
-      throw error;
-    }
-  }
-  
+  // Método para incrementar el contador de alimentos creados
   incrementarAlimentosCreados() {
     this.alimentosCreados++;
   }
 
   updateFood(foodId: string) {
+    // Obtén el ID del alimento seleccionado desde algún lugar
+    // let foodId = /* Obtén el ID del alimento seleccionado desde algún lugar */;
+    
     const updatedFoodData = {
       calories: this.foodForm.value.calories.toString(),
       carbs: this.foodForm.value.carbs.toString(),
@@ -144,11 +137,21 @@ export class CrudPutPage implements OnInit {
     this.firebaseSrv.updateDocument(path, updatedFoodData)
       .then(() => {
         console.log('Alimento actualizado correctamente.');
-        this.foodForm.reset();
-        this.inputEnabled = false;
+        this.foodForm.reset(); // Limpiar el formulario después de actualizar el alimento
+        this.inputEnabled = false; // Desactiva la edición
       })
       .catch(error => {
         console.error('Error al actualizar el alimento:', error);
+        // Manejo de errores si es necesario
       });
+  }
+  
+
+  openCamera() {
+    this.openCam = !this.openCam;
+  }
+
+  onImageSelected(image: string) {
+    this.selectedImage = 'data:image/jpeg;base64,' + image;
   }
 }
